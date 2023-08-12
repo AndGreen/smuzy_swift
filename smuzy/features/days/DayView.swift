@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DayView: View {
     @State private var isCalendarOpen = false
+    @EnvironmentObject var appState: AppState
     @State private var selectedDate = Date()
 
     private var arrowIcon: String {
@@ -23,16 +24,24 @@ struct DayView: View {
                     .clipped()
                 RoutinesListView()
                     .padding(.horizontal, 10)
+                    .padding(.top, 3)
                 Spacer()
             }
             .navigationBarTitleDisplayMode(.inline)
-            .dayViewToolbar(isCalendarOpen: $isCalendarOpen, selectedDate: $selectedDate)
+            .dayViewToolbar(isCalendarOpen: $isCalendarOpen,
+                            selectedDate: $selectedDate, onDateSelected: { _ in
+                                appState.updateSelectedDate(date: $selectedDate.wrappedValue)
+                            })
         }
     }
 }
 
 extension View {
-    func dayViewToolbar(isCalendarOpen: Binding<Bool>, selectedDate: Binding<Date>) -> some View {
+    func dayViewToolbar(
+        isCalendarOpen: Binding<Bool>,
+        selectedDate: Binding<Date>,
+        onDateSelected: (Date) -> Void
+    ) -> some View {
         toolbar {
             ToolbarItem(placement: .principal) {
                 Button(
@@ -40,7 +49,7 @@ extension View {
                         isCalendarOpen.wrappedValue.toggle()
                     }) {
                         HStack {
-                            Text("Today - Fri")
+                            Text(selectedDate.wrappedValue.getFormattedDayLabel())
                             Image(systemName: isCalendarOpen.wrappedValue ? "chevron.up" : "chevron.down")
                                 .resizable()
                                 .frame(width: 12, height: 7)

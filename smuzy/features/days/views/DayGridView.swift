@@ -32,7 +32,7 @@ struct DayGridView: View {
                     ForEach(0..<numColumns, id: \.self) { column in
                         Rectangle()
                             .fill(selectedIndices.contains(row * numColumns + column) ? activeColor : Color.clear)
-                            .frame(width: 40, height: 40)
+                            .frame(width: 44, height: 44)
                             .border(Color.black.opacity(0.5))
                             .onTapGesture {
                                 withAnimation(.easeInOut(duration: 0.2)) {

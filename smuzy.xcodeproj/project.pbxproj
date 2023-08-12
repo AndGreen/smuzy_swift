@@ -22,6 +22,7 @@
 		58999CD62A87CD29004B4B17 /* WrappingHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD52A87CD29004B4B17 /* WrappingHStack.swift */; };
 		58999CD82A87D707004B4B17 /* AddRoutineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD72A87D707004B4B17 /* AddRoutineButton.swift */; };
 		58999CDC2A87DB48004B4B17 /* RoutineFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CDB2A87DB48004B4B17 /* RoutineFormView.swift */; };
+		58999CDE2A88024F004B4B17 /* DayUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CDD2A88024F004B4B17 /* DayUtils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		58999CD52A87CD29004B4B17 /* WrappingHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappingHStack.swift; sourceTree = "<group>"; };
 		58999CD72A87D707004B4B17 /* AddRoutineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineButton.swift; sourceTree = "<group>"; };
 		58999CDB2A87DB48004B4B17 /* RoutineFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineFormView.swift; sourceTree = "<group>"; };
+		58999CDD2A88024F004B4B17 /* DayUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 			children = (
 				58999CCA2A87A8A2004B4B17 /* views */,
 				584A6A6A2A878BA7005FE04F /* DayView.swift */,
+				58999CDD2A88024F004B4B17 /* DayUtils.swift */,
 			);
 			path = days;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58999CDE2A88024F004B4B17 /* DayUtils.swift in Sources */,
 				58999CD82A87D707004B4B17 /* AddRoutineButton.swift in Sources */,
 				58999CC72A879E84004B4B17 /* CalendarView.swift in Sources */,
 				58999CD32A87CC69004B4B17 /* AppState.swift in Sources */,

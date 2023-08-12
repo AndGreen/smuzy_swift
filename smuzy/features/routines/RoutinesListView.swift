@@ -14,9 +14,9 @@ struct RoutinesListView: View {
     var body: some View {
         WrappingHStack(alignment: .leading) {
             ForEach(appState.routines) { routine in
-                let isActive = appState.activeRoutine == routine
+                let isActive = appState.selectedRoutine == routine
                 RoutineButtonView(routine: routine, isActive: isActive) {
-                    appState.updateActiveRoutine(routine: isActive ? nil : routine)
+                    appState.updateSelectedRoutine(routine: isActive ? nil : routine)
                 }
             }
             AddRoutineButton {

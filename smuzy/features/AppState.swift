@@ -34,10 +34,15 @@ class AppState: ObservableObject {
         "blueGray": Color(hex: 0xff667d8a),
         "black": Color(hex: 0xff344047)
     ]
-    @Published var activeRoutine: Routine? = nil
+    @Published var selectedRoutine: Routine? = nil
+    @Published var selectedDate: Date = .init()
 
-    func updateActiveRoutine(routine: Routine?) {
-        activeRoutine = routine
+    func updateSelectedRoutine(routine: Routine?) {
+        selectedRoutine = routine
+    }
+
+    func updateSelectedDate(date: Date) {
+        selectedDate = date
     }
 }
 
