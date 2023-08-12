@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct AddRoutineButton: View {
+    var action: () -> Void
+
     var body: some View {
-        Button(action: {}) {
+        Button(action: action) {
             HStack {
                 Image(systemName: "plus")
                     .font(.system(size: 24))
@@ -30,6 +32,6 @@ struct AddRoutineButton: View {
 
 struct AddRoutineButton_Previews: PreviewProvider {
     static var previews: some View {
-        AddRoutineButton()
+        AddRoutineButton(action: {})
     }
 }

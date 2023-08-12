@@ -21,6 +21,7 @@
 		58999CD32A87CC69004B4B17 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD22A87CC69004B4B17 /* AppState.swift */; };
 		58999CD62A87CD29004B4B17 /* WrappingHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD52A87CD29004B4B17 /* WrappingHStack.swift */; };
 		58999CD82A87D707004B4B17 /* AddRoutineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD72A87D707004B4B17 /* AddRoutineButton.swift */; };
+		58999CDC2A87DB48004B4B17 /* RoutineFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CDB2A87DB48004B4B17 /* RoutineFormView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		58999CD22A87CC69004B4B17 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		58999CD52A87CD29004B4B17 /* WrappingHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappingHStack.swift; sourceTree = "<group>"; };
 		58999CD72A87D707004B4B17 /* AddRoutineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineButton.swift; sourceTree = "<group>"; };
+		58999CDB2A87DB48004B4B17 /* RoutineFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineFormView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +142,7 @@
 				58999CDA2A87D75B004B4B17 /* data */,
 				58999CD92A87D746004B4B17 /* views */,
 				58999CD02A87AABA004B4B17 /* RoutinesListView.swift */,
+				58999CDB2A87DB48004B4B17 /* RoutineFormView.swift */,
 			);
 			path = routines;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				58999CD82A87D707004B4B17 /* AddRoutineButton.swift in Sources */,
 				58999CC72A879E84004B4B17 /* CalendarView.swift in Sources */,
 				58999CD32A87CC69004B4B17 /* AppState.swift in Sources */,
+				58999CDC2A87DB48004B4B17 /* RoutineFormView.swift in Sources */,
 				58999CD12A87AABA004B4B17 /* RoutinesListView.swift in Sources */,
 				584A6A7D2A8797EC005FE04F /* AppView.swift in Sources */,
 				584A6A6B2A878BA7005FE04F /* DayView.swift in Sources */,

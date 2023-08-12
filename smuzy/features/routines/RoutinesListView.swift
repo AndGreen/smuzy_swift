@@ -9,13 +9,19 @@ import SwiftUI
 
 struct RoutinesListView: View {
     @EnvironmentObject var appState: AppState
+    @State private var isRoutineFormOpened = false
 
     var body: some View {
         WrappingHStack(alignment: .leading) {
             ForEach(appState.routines) { routine in
                 RoutineButtonView(routine: routine)
             }
-            AddRoutineButton()
+            AddRoutineButton {
+                $isRoutineFormOpened.wrappedValue.toggle()
+            }
+        }
+        .sheet(isPresented: $isRoutineFormOpened) {
+            RoutineFormView()
         }
     }
 }
