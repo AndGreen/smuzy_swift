@@ -60,5 +60,6 @@ extension View {
 struct DayView_Previews: PreviewProvider {
     static var previews: some View {
         DayView()
+            .environmentObject(AppState())
     }
 }

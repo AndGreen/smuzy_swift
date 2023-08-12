@@ -11,21 +11,19 @@ struct CalendarView: View {
     @Binding var selectedDate: Date
 
     var body: some View {
-        NavigationView {
-            ScrollView {
-                DatePicker(
-                    "Select a date",
-                    selection: $selectedDate,
-                    displayedComponents: [.date]
-                )
-                .datePickerStyle(GraphicalDatePickerStyle())
-                .labelsHidden()
-                .navigationBarTitle("Pick date")
-                .navigationBarTitleDisplayMode(.inline)
-            }
-            .scrollDisabled(true)
-            .padding()
+        ScrollView {
+            DatePicker(
+                "Select a date",
+                selection: $selectedDate,
+                displayedComponents: [.date]
+            )
+            .datePickerStyle(GraphicalDatePickerStyle())
+            .labelsHidden()
+            .navigationBarTitle("Pick date")
+            .navigationBarTitleDisplayMode(.inline)
         }
+        .scrollDisabled(true)
+        .padding()
     }
 }
 

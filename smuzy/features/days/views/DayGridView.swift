@@ -25,7 +25,8 @@ struct DayGridView: View {
         VStack(spacing: 0) {
             ForEach(0..<numRows, id: \.self) { row in
                 HStack(spacing: 0) {
-                    Text("\(timeText(for: row))") // Display time label
+                    Text("\(timeText(for: row))")
+                        .foregroundColor(.gray)
                         .frame(width: 60, height: 40)
 
                     ForEach(0..<numColumns, id: \.self) { column in

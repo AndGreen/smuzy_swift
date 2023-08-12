@@ -18,6 +18,9 @@
 		58999CCD2A87AA33004B4B17 /* RoutineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CCC2A87AA33004B4B17 /* RoutineModel.swift */; };
 		58999CCF2A87AA9D004B4B17 /* RoutineButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CCE2A87AA9D004B4B17 /* RoutineButtonView.swift */; };
 		58999CD12A87AABA004B4B17 /* RoutinesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD02A87AABA004B4B17 /* RoutinesListView.swift */; };
+		58999CD32A87CC69004B4B17 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD22A87CC69004B4B17 /* AppState.swift */; };
+		58999CD62A87CD29004B4B17 /* WrappingHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD52A87CD29004B4B17 /* WrappingHStack.swift */; };
+		58999CD82A87D707004B4B17 /* AddRoutineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD72A87D707004B4B17 /* AddRoutineButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +36,9 @@
 		58999CCC2A87AA33004B4B17 /* RoutineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineModel.swift; sourceTree = "<group>"; };
 		58999CCE2A87AA9D004B4B17 /* RoutineButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineButtonView.swift; sourceTree = "<group>"; };
 		58999CD02A87AABA004B4B17 /* RoutinesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesListView.swift; sourceTree = "<group>"; };
+		58999CD22A87CC69004B4B17 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		58999CD52A87CD29004B4B17 /* WrappingHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappingHStack.swift; sourceTree = "<group>"; };
+		58999CD72A87D707004B4B17 /* AddRoutineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +91,7 @@
 		584A6A762A878EA9005FE04F /* common */ = {
 			isa = PBXGroup;
 			children = (
+				58999CD42A87CD1E004B4B17 /* views */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -96,6 +103,7 @@
 				584A6A792A87947F005FE04F /* profile */,
 				584A6A782A878F53005FE04F /* days */,
 				584A6A7C2A8797EC005FE04F /* AppView.swift */,
+				58999CD22A87CC69004B4B17 /* AppState.swift */,
 			);
 			path = features;
 			sourceTree = "<group>";
@@ -129,11 +137,36 @@
 		58999CCB2A87AA23004B4B17 /* routines */ = {
 			isa = PBXGroup;
 			children = (
-				58999CCC2A87AA33004B4B17 /* RoutineModel.swift */,
-				58999CCE2A87AA9D004B4B17 /* RoutineButtonView.swift */,
+				58999CDA2A87D75B004B4B17 /* data */,
+				58999CD92A87D746004B4B17 /* views */,
 				58999CD02A87AABA004B4B17 /* RoutinesListView.swift */,
 			);
 			path = routines;
+			sourceTree = "<group>";
+		};
+		58999CD42A87CD1E004B4B17 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				58999CD52A87CD29004B4B17 /* WrappingHStack.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		58999CD92A87D746004B4B17 /* views */ = {
+			isa = PBXGroup;
+			children = (
+				58999CCE2A87AA9D004B4B17 /* RoutineButtonView.swift */,
+				58999CD72A87D707004B4B17 /* AddRoutineButton.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		58999CDA2A87D75B004B4B17 /* data */ = {
+			isa = PBXGroup;
+			children = (
+				58999CCC2A87AA33004B4B17 /* RoutineModel.swift */,
+			);
+			path = data;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -206,12 +239,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58999CD82A87D707004B4B17 /* AddRoutineButton.swift in Sources */,
 				58999CC72A879E84004B4B17 /* CalendarView.swift in Sources */,
+				58999CD32A87CC69004B4B17 /* AppState.swift in Sources */,
 				58999CD12A87AABA004B4B17 /* RoutinesListView.swift in Sources */,
 				584A6A7D2A8797EC005FE04F /* AppView.swift in Sources */,
 				584A6A6B2A878BA7005FE04F /* DayView.swift in Sources */,
 				58999CC92A87A401004B4B17 /* DayGridView.swift in Sources */,
 				58999CCD2A87AA33004B4B17 /* RoutineModel.swift in Sources */,
+				58999CD62A87CD29004B4B17 /* WrappingHStack.swift in Sources */,
 				584A6A692A878BA7005FE04F /* Smuzy.swift in Sources */,
 				584A6A7B2A87949A005FE04F /* ProfileView.swift in Sources */,
 				58999CCF2A87AA9D004B4B17 /* RoutineButtonView.swift in Sources */,
