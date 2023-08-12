@@ -35,6 +35,10 @@ class AppState: ObservableObject {
         "black": Color(hex: 0xff344047)
     ]
     @Published var activeRoutine: Routine? = nil
+
+    func updateActiveRoutine(routine: Routine?) {
+        activeRoutine = routine
+    }
 }
 
 extension Color {

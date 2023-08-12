@@ -3,11 +3,10 @@ import SwiftUI
 struct RoutineButtonView: View {
     var routine: Routine
     var isActive: Bool = false // Default value is false
+    var action: () -> Void
 
     var body: some View {
-        Button(action: {
-            // Add action here if needed
-        }) {
+        Button(action: action) {
             HStack {
                 Circle()
                     .fill(routine.color)
@@ -31,7 +30,7 @@ struct RoutineButtonView: View {
 
 struct RoutineButtonView_Previews: PreviewProvider {
     static var previews: some View {
-        RoutineButtonView(routine: Routine(color: .blue, title: "Morning Routine"))
+        RoutineButtonView(routine: Routine(color: .blue, title: "Morning Routine")) {}
             .previewLayout(.sizeThatFits)
             .padding()
     }

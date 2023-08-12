@@ -14,7 +14,10 @@ struct RoutinesListView: View {
     var body: some View {
         WrappingHStack(alignment: .leading) {
             ForEach(appState.routines) { routine in
-                RoutineButtonView(routine: routine)
+                let isActive = appState.activeRoutine == routine
+                RoutineButtonView(routine: routine, isActive: isActive) {
+                    appState.updateActiveRoutine(routine: isActive ? nil : routine)
+                }
             }
             AddRoutineButton {
                 $isRoutineFormOpened.wrappedValue.toggle()
