@@ -1,10 +1,3 @@
-//
-//  AddRoutineButton.swift
-//  smuzy
-//
-//  Created by Andrey Zelenin on 12.08.2023.
-//
-
 import SwiftUI
 
 struct AddRoutineButton: View {
@@ -30,8 +23,6 @@ struct AddRoutineButton: View {
     }
 }
 
-struct AddRoutineButton_Previews: PreviewProvider {
-    static var previews: some View {
-        AddRoutineButton(action: {})
-    }
+#Preview {
+    AddRoutineButton(action: {})
 }

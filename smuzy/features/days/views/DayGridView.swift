@@ -7,18 +7,19 @@
 
 import SwiftUI
 
+let numRows = 8
+let numColumns = 8
+let timeInterval: TimeInterval = 3 * 60 * 60 // 3 hours in seconds
+
 struct DayGridView: View {
-    @State private var selectedIndices: Set<Int> = []
+    @EnvironmentObject private var appState: AppState
 
-    let numRows = 8
-    let numColumns = 8
+    var dayGrid: Blocks
+    var colorMap: [RoutineId: Color?]
 
-    let timeInterval: TimeInterval = 3 * 60 * 60 // 3 hours in seconds
-
-    let activeColor: Color // The active color for selected rectangles
-
-    init(activeColor: Color = .blue) {
-        self.activeColor = activeColor
+    init(dayGrid: Blocks, colorMap: [RoutineId: Color?]) {
+        self.dayGrid = dayGrid
+        self.colorMap = colorMap
     }
 
     var body: some View {
@@ -30,13 +31,18 @@ struct DayGridView: View {
                         .frame(width: 60, height: 40)
 
                     ForEach(0..<numColumns, id: \.self) { column in
+                        let startBlockId = Date().startOfDay.blockId
+                        let blockId = startBlockId + row * numColumns + column
+                        let blockRoutineId = dayGrid[blockId] ?? UUID()
+                        let blockColor = blockRoutineId != nil ? colorMap[blockRoutineId!] : .clear
+
                         Rectangle()
-                            .fill(selectedIndices.contains(row * numColumns + column) ? activeColor : Color.clear)
-                            .frame(width: 44, height: 44)
+                            .fill((blockColor ?? .clear) ?? .clear)
+                            .frame(height: 40)
                             .border(Color.black.opacity(0.5))
                             .onTapGesture {
                                 withAnimation(.easeInOut(duration: 0.2)) {
-                                    toggleSelection(row: row, column: column)
+                                    toggleSelection(blockId: blockId)
                                 }
                             }
                     }
@@ -54,18 +60,13 @@ struct DayGridView: View {
         return String(format: "%02d:%02d", hours, minutes)
     }
 
-    func toggleSelection(row: Int, column: Int) {
-        let index = row * numColumns + column
-        if selectedIndices.contains(index) {
-            selectedIndices.remove(index)
-        } else {
-            selectedIndices.insert(index)
-        }
+    func toggleSelection(blockId: BlockId) {
+        print(blockId)
+        appState.dayGrid[blockId] = appState.selectedRoutine?.id ?? nil
     }
 }
 
-struct DayGridView_previews: PreviewProvider {
-    static var previews: some View {
-        DayGridView(activeColor: .red)
-    }
+#Preview {
+    DayGridView(dayGrid: [:], colorMap: [:])
+        .environmentObject(AppState())
 }

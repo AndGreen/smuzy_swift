@@ -5,15 +5,18 @@
 //  Created by Andrey Zelenin on 12.08.2023.
 //
 
+import SwiftData
 import SwiftUI
 
 @main
 struct smuzyApp: App {
-    @StateObject private var appState = AppState()
-
     var body: some Scene {
+        @StateObject var appState = AppState()
+
         WindowGroup {
-            AppView().environmentObject(appState)
+            AppView()
+                .environmentObject(appState)
+                .modelContainer(for: [Routine.self, UserModel.self])
         }
     }
 

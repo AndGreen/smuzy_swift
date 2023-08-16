@@ -9,8 +9,9 @@ import SwiftUI
 
 struct DayView: View {
     @State private var isCalendarOpen = false
-    @EnvironmentObject var appState: AppState
     @State private var selectedDate = Date()
+
+    @EnvironmentObject var appState: AppState
 
     private var arrowIcon: String {
         return isCalendarOpen ? "chevron.up" : "chevron.down"
@@ -19,7 +20,7 @@ struct DayView: View {
     var body: some View {
         NavigationView {
             VStack {
-                DayGridView()
+                DayGridView(dayGrid: appState.dayGrid, colorMap: appState.routines.routinesColorMap)
                     .background(.gray.opacity(0.05))
                     .clipped()
                 RoutinesListView()
@@ -27,10 +28,13 @@ struct DayView: View {
                     .padding(.top, 3)
                 Spacer()
             }
+            .onChange(of: selectedDate) { _, _ in
+//                let dayBlockRange = date.getDayBlockRange()
+            }
             .navigationBarTitleDisplayMode(.inline)
             .dayViewToolbar(isCalendarOpen: $isCalendarOpen,
                             selectedDate: $selectedDate, onDateSelected: { _ in
-                                appState.updateSelectedDate(date: $selectedDate.wrappedValue)
+                                appState.selectedDate = $selectedDate.wrappedValue
                             })
         }
     }
@@ -53,22 +57,23 @@ extension View {
                             Image(systemName: isCalendarOpen.wrappedValue ? "chevron.up" : "chevron.down")
                                 .resizable()
                                 .frame(width: 12, height: 7)
+                                .offset(x: 0, y: 1)
                         }
                     }
                     .sheet(isPresented: isCalendarOpen) {
                         CalendarView(selectedDate: selectedDate)
-                            .onChange(of: selectedDate.wrappedValue, perform: { _ in
+                            .onChange(of: selectedDate.wrappedValue) { _, _ in
                                 isCalendarOpen.wrappedValue = false
-                            })
+                            }
                     }
             }
         }
     }
 }
 
-struct DayView_Previews: PreviewProvider {
-    static var previews: some View {
-        DayView()
-            .environmentObject(AppState())
-    }
+#Preview {
+    DayView()
+        .environmentObject(AppState(
+        ))
+        .modelContainer(for: Routine.self)
 }

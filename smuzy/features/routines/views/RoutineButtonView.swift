@@ -1,3 +1,4 @@
+import SwiftData
 import SwiftUI
 
 struct RoutineButtonView: View {
@@ -9,7 +10,7 @@ struct RoutineButtonView: View {
         Button(action: action) {
             HStack {
                 Circle()
-                    .fill(routine.color)
+                    .fill(Color.fromHex(routine.color))
                     .frame(width: 18, height: 18)
                     .overlay(
                         Circle()
@@ -28,10 +29,9 @@ struct RoutineButtonView: View {
     }
 }
 
-struct RoutineButtonView_Previews: PreviewProvider {
-    static var previews: some View {
-        RoutineButtonView(routine: Routine(color: .blue, title: "Morning Routine")) {}
-            .previewLayout(.sizeThatFits)
-            .padding()
-    }
+#Preview {
+    RoutineButtonView(routine: Routine(color: Color.blue.toHex, title: "Morning Routine")) {}
+        .modelContainer(for: Routine.self)
+        .previewLayout(.sizeThatFits)
+        .padding()
 }

@@ -12,28 +12,39 @@ struct CalendarView: View {
 
     var body: some View {
         ScrollView {
-            DatePicker(
-                "Select a date",
-                selection: $selectedDate,
-                displayedComponents: [.date]
-            )
-            .datePickerStyle(GraphicalDatePickerStyle())
-            .labelsHidden()
-            .navigationBarTitle("Pick date")
-            .navigationBarTitleDisplayMode(.inline)
+            VStack {
+                DatePicker(
+                    "Select a date",
+                    selection: $selectedDate,
+                    displayedComponents: [.date]
+                )
+                .datePickerStyle(GraphicalDatePickerStyle())
+                .labelsHidden()
+                .navigationBarTitle("Pick date")
+                .navigationBarTitleDisplayMode(.inline)
+
+                Button(action: {
+                    $selectedDate.wrappedValue = Date()
+                }) {
+                    Text("Today")
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                }
+            }
         }
         .scrollDisabled(true)
         .padding()
     }
 }
 
-struct CalendarView_Previews: PreviewProvider {
-    static var previews: some View {
-        let selectedDate = Binding<Date>(
-            get: { Date() },
-            set: { _ in }
-        )
+#Preview {
+    let selectedDate = Binding<Date>(
+        get: { Date() },
+        set: { _ in }
+    )
 
-        return CalendarView(selectedDate: selectedDate)
-    }
+    return CalendarView(selectedDate: selectedDate)
 }

@@ -1,10 +1,4 @@
-//
-//  RoutinesListView.swift
-//  smuzy
-//
-//  Created by Andrey Zelenin on 12.08.2023.
-//
-
+import SwiftData
 import SwiftUI
 
 struct RoutinesListView: View {
@@ -12,26 +6,27 @@ struct RoutinesListView: View {
     @State private var isRoutineFormOpened = false
 
     var body: some View {
-        WrappingHStack(alignment: .leading) {
-            ForEach(appState.routines) { routine in
-                let isActive = appState.selectedRoutine == routine
-                RoutineButtonView(routine: routine, isActive: isActive) {
-                    appState.updateSelectedRoutine(routine: isActive ? nil : routine)
+        ScrollView {
+            WrappingHStack(alignment: .leading) {
+                ForEach(appState.routines) { routine in
+                    let isActive = appState.selectedRoutine == routine
+                    RoutineButtonView(routine: routine, isActive: isActive) {
+                        appState.selectedRoutine = isActive ? nil : routine
+                    }
+                }
+                AddRoutineButton {
+                    $isRoutineFormOpened.wrappedValue.toggle()
                 }
             }
-            AddRoutineButton {
-                $isRoutineFormOpened.wrappedValue.toggle()
+            .sheet(isPresented: $isRoutineFormOpened) {
+                RoutineFormView(isRoutineFormOpened: $isRoutineFormOpened)
             }
-        }
-        .sheet(isPresented: $isRoutineFormOpened) {
-            RoutineFormView()
         }
     }
 }
 
-struct RoutinesListView_Previews: PreviewProvider {
-    static var previews: some View {
-        RoutinesListView()
-            .environmentObject(AppState())
-    }
+#Preview {
+    RoutinesListView()
+        .environmentObject(AppState())
+        .modelContainer(for: Routine.self)
 }

@@ -1,67 +1,89 @@
-//
-//  RoutineFormView.swift
-//  smuzy
-//
-//  Created by Andrey Zelenin on 12.08.2023.
-//
-
+import CoreHaptics
+import SwiftData
 import SwiftUI
 
 struct RoutineFormView: View {
+    enum FocusedField {
+        case title
+    }
+
     @EnvironmentObject var appState: AppState
-    @State private var textInput: String = ""
+    @State private var title: String = ""
+    @State private var activeColor: Color?
+    @Binding var isRoutineFormOpened: Bool
+    @FocusState private var focusedField: FocusedField?
 
     var colorList: [Color] {
-        return appState.colors.map { $0.value }
+        let colorOrder: [String] = [
+            "red", "pink", "purple", "deepPurple", "indigo",
+            "blue", "cyan", "teal", "green", "lightGreen",
+            "yellow", "orange", "brown", "gray", "blueGray", "black"
+        ]
+
+        return colorOrder.compactMap { colorName in
+            defaultColors[colorName]
+        }
+    }
+
+    var isSaveButtonDisabled: Bool {
+        title.isEmpty || activeColor == nil
     }
 
     var body: some View {
         NavigationView {
             VStack {
                 Form {
-                    TextField("Title", text: $textInput)
-
+                    TextField("Title", text: $title)
+                        .focused($focusedField, equals: .title)
                     HStack {
                         Spacer()
-                        WrappingHStack(alignment: .leading,
-                                       horizontalSpacing: 8, verticalSpacing: 20)
+                        WrappingHStack(alignment: .center,
+                                       horizontalSpacing: 15, verticalSpacing: 20)
                         {
                             ForEach(colorList.indices, id: \.self) { colorName in
-                                CircleButton(color: colorList[colorName]) {}
+                                let isActive =
+                                    activeColor == colorList[colorName]
+                                CircleColorButton(
+                                    color: colorList[colorName],
+                                    onTap: { color in
+                                        activeColor = isActive ? nil : color
+                                    },
+                                    isActive: isActive)
                             }
                         }.padding(.vertical)
                         Spacer()
                     }
                 }
+                .onAppear {
+                    focusedField = .title
+                }
                 .navigationTitle("New Routine")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(trailing:
                     Button("Save") {
-                        // Handle save action here
-                        print("Saving: \(textInput)")
+                        appState.routines.append(Routine(color: activeColor!.toHex, title: title))
+                        isRoutineFormOpened = false
                     }
+                    .disabled(isSaveButtonDisabled)
                 )
             }
         }
     }
 }
 
-struct CircleButton: View {
-    var color: Color
-    var action: () -> Void
-
-    var body: some View {
-        Button(action: action) {
-            Circle()
-                .foregroundColor(color)
-                .frame(width: 60, height: 60)
-        }
-    }
-}
-
 struct RoutineFormView_Previews: PreviewProvider {
     static var previews: some View {
-        RoutineFormView()
+        @State var isRoutineFormOpened = false
+        RoutineFormView(isRoutineFormOpened: $isRoutineFormOpened)
             .environmentObject(AppState())
+            .modelContainer(for: Routine.self)
     }
 }
+
+//
+// #Preview {
+//    @State var isRoutineFormOpened = false
+//    RoutineFormView(isRoutineFormOpened: $isRoutineFormOpened)
+//        .environmentObject(AppState())
+//        .modelContainer(for: Routine.self)
+// }
