@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5837989E2A8B8318007C8A3F /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5837989D2A8B8318007C8A3F /* Date.swift */; };
+		583798A02A8B8323007C8A3F /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5837989F2A8B8323007C8A3F /* Color.swift */; };
 		584A6A692A878BA7005FE04F /* Smuzy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584A6A682A878BA7005FE04F /* Smuzy.swift */; };
 		584A6A6B2A878BA7005FE04F /* DayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584A6A6A2A878BA7005FE04F /* DayView.swift */; };
 		584A6A6D2A878BA8005FE04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 584A6A6C2A878BA8005FE04F /* Assets.xcassets */; };
@@ -23,9 +25,13 @@
 		58999CD82A87D707004B4B17 /* AddRoutineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD72A87D707004B4B17 /* AddRoutineButton.swift */; };
 		58999CDC2A87DB48004B4B17 /* RoutineFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CDB2A87DB48004B4B17 /* RoutineFormView.swift */; };
 		58999CDE2A88024F004B4B17 /* DayUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CDD2A88024F004B4B17 /* DayUtils.swift */; };
+		58999CE32A8823AC004B4B17 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CE22A8823AC004B4B17 /* Constants.swift */; };
+		58D5558D2A88F9D8003B798E /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D5558C2A88F9D8003B798E /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5837989D2A8B8318007C8A3F /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
+		5837989F2A8B8323007C8A3F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		584A6A652A878BA7005FE04F /* smuzy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = smuzy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		584A6A682A878BA7005FE04F /* Smuzy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Smuzy.swift; sourceTree = "<group>"; };
 		584A6A6A2A878BA7005FE04F /* DayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayView.swift; sourceTree = "<group>"; };
@@ -43,6 +49,8 @@
 		58999CD72A87D707004B4B17 /* AddRoutineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineButton.swift; sourceTree = "<group>"; };
 		58999CDB2A87DB48004B4B17 /* RoutineFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineFormView.swift; sourceTree = "<group>"; };
 		58999CDD2A88024F004B4B17 /* DayUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayUtils.swift; sourceTree = "<group>"; };
+		58999CE22A8823AC004B4B17 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		58D5558C2A88F9D8003B798E /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5837989C2A8B830E007C8A3F /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5837989D2A8B8318007C8A3F /* Date.swift */,
+				5837989F2A8B8323007C8A3F /* Color.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
 		584A6A5C2A878BA7005FE04F = {
 			isa = PBXGroup;
 			children = (
@@ -95,7 +112,9 @@
 		584A6A762A878EA9005FE04F /* common */ = {
 			isa = PBXGroup;
 			children = (
+				5837989C2A8B830E007C8A3F /* extensions */,
 				58999CD42A87CD1E004B4B17 /* views */,
+				58999CE22A8823AC004B4B17 /* Constants.swift */,
 			);
 			path = common;
 			sourceTree = "<group>";
@@ -115,6 +134,7 @@
 		584A6A782A878F53005FE04F /* days */ = {
 			isa = PBXGroup;
 			children = (
+				58999CDF2A8821BA004B4B17 /* data */,
 				58999CCA2A87A8A2004B4B17 /* views */,
 				584A6A6A2A878BA7005FE04F /* DayView.swift */,
 				58999CDD2A88024F004B4B17 /* DayUtils.swift */,
@@ -126,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				584A6A7A2A87949A005FE04F /* ProfileView.swift */,
+				58D5558C2A88F9D8003B798E /* UserModel.swift */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -171,6 +192,13 @@
 			isa = PBXGroup;
 			children = (
 				58999CCC2A87AA33004B4B17 /* RoutineModel.swift */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
+		58999CDF2A8821BA004B4B17 /* data */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -248,10 +276,14 @@
 				58999CDE2A88024F004B4B17 /* DayUtils.swift in Sources */,
 				58999CD82A87D707004B4B17 /* AddRoutineButton.swift in Sources */,
 				58999CC72A879E84004B4B17 /* CalendarView.swift in Sources */,
+				58D5558D2A88F9D8003B798E /* UserModel.swift in Sources */,
 				58999CD32A87CC69004B4B17 /* AppState.swift in Sources */,
 				58999CDC2A87DB48004B4B17 /* RoutineFormView.swift in Sources */,
+				5837989E2A8B8318007C8A3F /* Date.swift in Sources */,
 				58999CD12A87AABA004B4B17 /* RoutinesListView.swift in Sources */,
+				58999CE32A8823AC004B4B17 /* Constants.swift in Sources */,
 				584A6A7D2A8797EC005FE04F /* AppView.swift in Sources */,
+				583798A02A8B8323007C8A3F /* Color.swift in Sources */,
 				584A6A6B2A878BA7005FE04F /* DayView.swift in Sources */,
 				58999CC92A87A401004B4B17 /* DayGridView.swift in Sources */,
 				58999CCD2A87AA33004B4B17 /* RoutineModel.swift in Sources */,
@@ -387,14 +419,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"smuzy/Preview Content\"";
-				DEVELOPMENT_TEAM = 8QXV87X854;
+				DEVELOPMENT_TEAM = WCX2SAAF8L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Smuzy;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -416,14 +451,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"smuzy/Preview Content\"";
-				DEVELOPMENT_TEAM = 8QXV87X854;
+				DEVELOPMENT_TEAM = WCX2SAAF8L;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Smuzy;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
