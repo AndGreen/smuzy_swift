@@ -1,4 +1,3 @@
-import CoreHaptics
 import SwiftData
 import SwiftUI
 

@@ -5,6 +5,7 @@
 //  Created by Andrey Zelenin on 12.08.2023.
 //
 
+import CoreHaptics
 import SwiftUI
 
 let numRows = 8
@@ -13,6 +14,7 @@ let timeInterval: TimeInterval = 3 * 60 * 60 // 3 hours in seconds
 
 struct DayGridView: View {
     @EnvironmentObject private var appState: AppState
+    @State var feedbackGenerator: UIImpactFeedbackGenerator? = nil
 
     var body: some View {
         VStack(spacing: 0) {
@@ -71,6 +73,8 @@ struct DayGridView: View {
     func toggleSelection(blockId: BlockId) {
         print(blockId)
         appState.dayGrid[blockId] = appState.selectedRoutine?.id ?? nil
+        feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+        feedbackGenerator?.prepare()
     }
 }
 

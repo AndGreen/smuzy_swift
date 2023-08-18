@@ -1,3 +1,4 @@
+import CoreHaptics
 import SwiftUI
 
 struct CircleColorButton: View {
