@@ -39,11 +39,3 @@ class User {
         self.routines = routines
     }
 }
-
-extension User {
-    var routinesColorMap: [RoutineId: Color] {
-        return self.routines.reduce(into: [:]) { result, routine in
-            result[routine.id] = Color.fromHex(routine.color)
-        }
-    }
-}

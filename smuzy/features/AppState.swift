@@ -4,7 +4,7 @@ import SwiftUI
 
 typealias BlockId = Int
 typealias RoutineId = UUID
-typealias Blocks = [BlockId: RoutineId?]
+typealias Blocks = [BlockId: RoutineId]
 
 class AppState: ObservableObject {
     @Published var user: User

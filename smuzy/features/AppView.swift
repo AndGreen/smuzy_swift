@@ -53,9 +53,3 @@ struct AppView: View {
         .environmentObject(AppState())
         .modelContainer(for: [Routine.self, UserModel.self], inMemory: true)
 }
-
-#Preview("With Data") {
-    AppView()
-        .environmentObject(AppState())
-        .modelContainer(for: [Routine.self, UserModel.self], inMemory: true)
-}

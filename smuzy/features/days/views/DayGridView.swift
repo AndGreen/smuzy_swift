@@ -14,34 +14,35 @@ let timeInterval: TimeInterval = 3 * 60 * 60 // 3 hours in seconds
 struct DayGridView: View {
     @EnvironmentObject private var appState: AppState
 
-    var dayGrid: Blocks
-    var colorMap: [RoutineId: Color?]
-
-    init(dayGrid: Blocks, colorMap: [RoutineId: Color?]) {
-        self.dayGrid = dayGrid
-        self.colorMap = colorMap
-    }
-
     var body: some View {
         VStack(spacing: 0) {
             ForEach(0..<numRows, id: \.self) { row in
                 HStack(spacing: 0) {
                     Text("\(timeText(for: row))")
-                        .foregroundColor(.gray)
+                        .foregroundColor(.gray.opacity(0.4))
                         .frame(width: 60, height: 40)
 
                     ForEach(0..<numColumns, id: \.self) { column in
                         let startBlockId = Date().startOfDay.blockId
                         let blockId = startBlockId + row * numColumns + column
-                        let blockRoutineId = dayGrid[blockId] ?? UUID()
-                        let blockColor = blockRoutineId != nil ? colorMap[blockRoutineId!] : .clear
+                        let blockRoutineId = appState.dayGrid[blockId]
+                        let blockColor = appState.routines.colorMap[blockRoutineId ?? RoutineId()] ?? Color.white.opacity(0.001) // fix it
+
+                        let isLastRow = row == numRows - 1
+                        let isLastColumn = column == numColumns - 1
+
+                        let edges = getEdges(isLastRow: isLastRow,
+                                             isLastColumn: isLastColumn)
 
                         Rectangle()
-                            .fill((blockColor ?? .clear) ?? .clear)
-                            .frame(height: 40)
-                            .border(Color.black.opacity(0.5))
+                            .fill(blockColor)
+                            .frame(width: 40, height: 40)
+                            .sideBorder(width: 1,
+                                        edges: edges,
+                                        color: Color.black.opacity(0.3))
                             .onTapGesture {
-                                withAnimation(.easeInOut(duration: 0.2)) {
+                                withAnimation(.easeInOut(duration: 0.1)) {
+                                    print(type(of: blockRoutineId))
                                     toggleSelection(blockId: blockId)
                                 }
                             }
@@ -51,6 +52,13 @@ struct DayGridView: View {
         }
         .padding()
         .padding(.trailing, 5)
+    }
+
+    func getEdges(isLastRow: Bool, isLastColumn: Bool) -> [Edge] {
+        var edges: [Edge] = [.top, .leading]
+        if isLastRow { edges.append(.bottom) }
+        if isLastColumn { edges.append(.trailing) }
+        return edges
     }
 
     func timeText(for row: Int) -> String {
@@ -67,6 +75,6 @@ struct DayGridView: View {
 }
 
 #Preview {
-    DayGridView(dayGrid: [:], colorMap: [:])
+    DayGridView()
         .environmentObject(AppState())
 }

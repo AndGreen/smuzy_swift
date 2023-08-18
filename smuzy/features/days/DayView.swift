@@ -20,12 +20,10 @@ struct DayView: View {
     var body: some View {
         NavigationView {
             VStack {
-                DayGridView(dayGrid: appState.dayGrid, colorMap: appState.routines.routinesColorMap)
+                DayGridView()
                     .background(.gray.opacity(0.05))
                     .clipped()
                 RoutinesListView()
-                    .padding(.horizontal, 10)
-                    .padding(.top, 3)
                 Spacer()
             }
             .onChange(of: selectedDate) { _, _ in

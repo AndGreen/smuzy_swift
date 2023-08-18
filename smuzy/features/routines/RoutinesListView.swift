@@ -21,6 +21,8 @@ struct RoutinesListView: View {
             .sheet(isPresented: $isRoutineFormOpened) {
                 RoutineFormView(isRoutineFormOpened: $isRoutineFormOpened)
             }
+            .padding(.top, 3)
+            .padding(.horizontal, 10)
         }
     }
 }

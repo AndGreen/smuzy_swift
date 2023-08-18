@@ -23,7 +23,7 @@ class Routine {
 }
 
 extension [Routine] {
-    var routinesColorMap: [RoutineId: Color] {
+    var colorMap: [RoutineId: Color] {
         return self.reduce(into: [:]) { result, routine in
             result[routine.id] = Color.fromHex(routine.color)
         }
