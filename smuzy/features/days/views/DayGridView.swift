@@ -25,7 +25,7 @@ struct DayGridView: View {
                         .frame(width: 60, height: 40)
 
                     ForEach(0..<numColumns, id: \.self) { column in
-                        let startBlockId = Date().startOfDay.blockId
+                        let startBlockId = appState.selectedDate.startOfDay.blockId
                         let blockId = startBlockId + row * numColumns + column
                         let blockRoutineId = appState.dayGrid[blockId]
                         let blockColor = appState.routines.colorMap[blockRoutineId ?? RoutineId()] ?? Color.white.opacity(0.001) // fix it
@@ -44,7 +44,6 @@ struct DayGridView: View {
                                         color: Color.black.opacity(0.3))
                             .onTapGesture {
                                 withAnimation(.easeInOut(duration: 0.1)) {
-                                    print(type(of: blockRoutineId))
                                     toggleSelection(blockId: blockId)
                                 }
                             }
@@ -71,7 +70,6 @@ struct DayGridView: View {
     }
 
     func toggleSelection(blockId: BlockId) {
-        print(blockId)
         appState.dayGrid[blockId] = appState.selectedRoutine?.id ?? nil
         feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
         feedbackGenerator?.prepare()

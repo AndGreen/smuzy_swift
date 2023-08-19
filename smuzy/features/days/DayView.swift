@@ -26,14 +26,12 @@ struct DayView: View {
                 RoutinesListView()
                 Spacer()
             }
-            .onChange(of: selectedDate) { _, _ in
-//                let dayBlockRange = date.getDayBlockRange()
-            }
             .navigationBarTitleDisplayMode(.inline)
             .dayViewToolbar(isCalendarOpen: $isCalendarOpen,
-                            selectedDate: $selectedDate, onDateSelected: { _ in
-                                appState.selectedDate = $selectedDate.wrappedValue
-                            })
+                            selectedDate: $selectedDate)
+            .onChange(of: selectedDate) { _, newValue in
+                appState.selectedDate = newValue
+            }
         }
     }
 }
@@ -41,8 +39,7 @@ struct DayView: View {
 extension View {
     func dayViewToolbar(
         isCalendarOpen: Binding<Bool>,
-        selectedDate: Binding<Date>,
-        onDateSelected: (Date) -> Void
+        selectedDate: Binding<Date>
     ) -> some View {
         toolbar {
             ToolbarItem(placement: .principal) {
