@@ -18,9 +18,6 @@ struct AppView: View {
                     Image(systemName: "person.fill")
                 }
         }
-        .onChange(of: appState.dayGrid) {
-            print(appState.dayGrid)
-        }
         .onAppear {
             initState()
         }
@@ -45,8 +42,6 @@ struct AppView: View {
         }
 
         if appState.routines.isEmpty {}
-
-        print(appState.user.routines)
     }
 }
 

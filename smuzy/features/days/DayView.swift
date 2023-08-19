@@ -29,6 +29,13 @@ struct DayView: View {
             .navigationBarTitleDisplayMode(.inline)
             .dayViewToolbar(isCalendarOpen: $isCalendarOpen,
                             selectedDate: $selectedDate)
+            .onChange(of: appState.selectedDate) {
+                withAnimation {
+                    if selectedDate != appState.selectedDate {
+                        selectedDate = appState.selectedDate
+                    }
+                }
+            }
             .onChange(of: selectedDate) { _, newValue in
                 appState.selectedDate = newValue
             }

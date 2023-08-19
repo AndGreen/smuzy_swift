@@ -51,6 +51,18 @@ struct DayGridView: View {
                 }
             }
         }
+        .gesture(DragGesture(minimumDistance: 50, coordinateSpace: .local)
+            .onEnded { value in
+                let calendar = Calendar.current
+                let selectedDate = appState.selectedDate
+                if value.translation.width < 0 {
+                    appState.selectedDate = calendar.date(byAdding: .day, value: 1, to: selectedDate)!
+                }
+
+                if value.translation.width > 0 {
+                    appState.selectedDate = calendar.date(byAdding: .day, value: -1, to: selectedDate)!
+                }
+            })
         .padding()
         .padding(.trailing, 5)
     }
