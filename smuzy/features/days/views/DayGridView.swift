@@ -15,6 +15,7 @@ let timeInterval: TimeInterval = 3 * 60 * 60 // 3 hours in seconds
 struct DayGridView: View {
     @EnvironmentObject private var appState: AppState
     @State var feedbackGenerator: UIImpactFeedbackGenerator? = nil
+    @State private var animationAmount = 1.0
 
     var body: some View {
         VStack(spacing: 0) {
@@ -28,7 +29,8 @@ struct DayGridView: View {
                         let startBlockId = appState.selectedDate.startOfDay.blockId
                         let blockId = startBlockId + row * numColumns + column
                         let blockRoutineId = appState.dayGrid[blockId]
-                        let blockColor = appState.routines.colorMap[blockRoutineId ?? RoutineId()] ?? Color.white.opacity(0.001) // fix it
+
+                        let blockColor = appState.routines.colorMap[blockRoutineId ?? RoutineId()] // fix it
 
                         let isLastRow = row == numRows - 1
                         let isLastColumn = column == numColumns - 1
@@ -36,17 +38,13 @@ struct DayGridView: View {
                         let edges = getEdges(isLastRow: isLastRow,
                                              isLastColumn: isLastColumn)
 
-                        Rectangle()
-                            .fill(blockColor)
-                            .frame(width: 40, height: 40)
-                            .sideBorder(width: 1,
-                                        edges: edges,
-                                        color: Color.black.opacity(0.3))
-                            .onTapGesture {
-                                withAnimation(.easeInOut(duration: 0.1)) {
-                                    toggleSelection(blockId: blockId)
-                                }
+                        DayBlockView(
+                            edges: edges,
+                            blockColor: blockColor,
+                            onTap: {
+                                toggleSelection(blockId: blockId)
                             }
+                        )
                     }
                 }
             }
