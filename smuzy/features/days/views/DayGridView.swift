@@ -18,37 +18,56 @@ struct DayGridView: View {
     @State private var animationAmount = 1.0
 
     var body: some View {
-        VStack(spacing: 0) {
-            ForEach(0..<numRows, id: \.self) { row in
-                HStack(spacing: 0) {
-                    Text("\(timeText(for: row))")
-                        .foregroundColor(.gray.opacity(0.4))
-                        .frame(width: 60, height: 40)
+        ZStack {
+            Grid(horizontalSpacing: 0, verticalSpacing: 0,
+                 content: {
+                     ForEach(0 ..< numRows, id: \.self) { row in
+                         GridRow {
+                             Text("\(timeText(for: row))")
+                                 .foregroundColor(.gray.opacity(0.4))
+                                 .frame(width: 60, height: 40)
 
-                    ForEach(0..<numColumns, id: \.self) { column in
-                        let startBlockId = appState.selectedDate.startOfDay.blockId
-                        let blockId = startBlockId + row * numColumns + column
-                        let blockRoutineId = appState.dayGrid[blockId]
+                             ForEach(0 ..< numColumns, id: \.self) { column in
+                                 let (_, blockColor) = getBlock(row: row, column: column)
 
-                        let blockColor = appState.routines.colorMap[blockRoutineId ?? RoutineId()] // fix it
+                                 let isLastRow = row == numRows - 1
+                                 let isLastColumn = column == numColumns - 1
 
-                        let isLastRow = row == numRows - 1
-                        let isLastColumn = column == numColumns - 1
+                                 let edges = getEdges(isLastRow: isLastRow,
+                                                      isLastColumn: isLastColumn)
 
-                        let edges = getEdges(isLastRow: isLastRow,
-                                             isLastColumn: isLastColumn)
+                                 DayBlockView(
+                                     edges: edges,
+                                     blockColor: blockColor
+                                 )
+                             }
+                         }
+                     }
+                 })
 
-                        DayBlockView(
-                            edges: edges,
-                            blockColor: blockColor,
-                            onTap: {
-                                toggleSelection(blockId: blockId)
-                            }
-                        )
-                    }
-                }
-            }
+            Grid(horizontalSpacing: 0, verticalSpacing: 0,
+                 content: {
+                     ForEach(0 ..< numRows, id: \.self) { row in
+                         GridRow {
+                             Rectangle()
+                                 .fill(.clear)
+                                 .frame(width: 60, height: 40)
+                             ForEach(0 ..< numColumns, id: \.self) { column in
+                                 let (blockId, blockColor) = getBlock(row: row, column: column)
+
+                                 DayBlockAnimation(
+                                     blockColor: blockColor,
+                                     onTap: {
+                                         toggleSelection(blockId: blockId)
+                                     }
+                                 )
+                             }
+                         }
+                     }
+                 })
         }
+        .padding()
+        .padding(.trailing, 5)
         .gesture(DragGesture(minimumDistance: 50, coordinateSpace: .local)
             .onEnded { value in
                 let calendar = Calendar.current
@@ -61,8 +80,14 @@ struct DayGridView: View {
                     appState.selectedDate = calendar.date(byAdding: .day, value: -1, to: selectedDate)!
                 }
             })
-        .padding()
-        .padding(.trailing, 5)
+    }
+
+    func getBlock(row: Int, column: Int) -> (blockId: Int, blockColor: Color?) {
+        let startBlockId = appState.selectedDate.startOfDay.blockId
+        let blockId = startBlockId + row * numColumns + column
+        let blockRoutineId = appState.dayGrid[blockId]
+        let blockColor = appState.routines.colorMap[blockRoutineId ?? RoutineId()]
+        return (blockId, blockColor)
     }
 
     func getEdges(isLastRow: Bool, isLastColumn: Bool) -> [Edge] {

@@ -8,12 +8,12 @@ struct AppView: View {
 
     var body: some View {
         TabView {
-            DayView()
+            DayScreen()
                 .tabItem {
                     Image(systemName: "calendar")
                 }
 
-            ProfileView()
+            ProfileScreen()
                 .tabItem {
                     Image(systemName: "person.fill")
                 }

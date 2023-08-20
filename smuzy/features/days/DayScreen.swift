@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct DayView: View {
+struct DayScreen: View {
     @State private var isCalendarOpen = false
     @State private var selectedDate = Date()
 
@@ -74,7 +74,7 @@ extension View {
 }
 
 #Preview {
-    DayView()
+    DayScreen()
         .environmentObject(AppState(
         ))
         .modelContainer(for: Routine.self)
