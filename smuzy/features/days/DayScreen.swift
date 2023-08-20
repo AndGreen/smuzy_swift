@@ -21,6 +21,7 @@ struct DayScreen: View {
         NavigationView {
             VStack {
                 DayGridView()
+                    .padding()
                     .background(.gray.opacity(0.05))
                     .clipped()
                 RoutinesListView()
@@ -63,7 +64,7 @@ extension View {
                         }
                     }
                     .sheet(isPresented: isCalendarOpen) {
-                        CalendarView(selectedDate: selectedDate)
+                        CalendarScreen(selectedDate: selectedDate)
                             .onChange(of: selectedDate.wrappedValue) { _, _ in
                                 isCalendarOpen.wrappedValue = false
                             }
@@ -76,6 +77,6 @@ extension View {
 #Preview {
     DayScreen()
         .environmentObject(AppState(
+            routines: defaultRoutines
         ))
-        .modelContainer(for: Routine.self)
 }

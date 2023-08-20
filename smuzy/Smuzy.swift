@@ -5,7 +5,6 @@
 //  Created by Andrey Zelenin on 12.08.2023.
 //
 
-import SwiftData
 import SwiftUI
 
 @main
@@ -16,7 +15,6 @@ struct smuzyApp: App {
         WindowGroup {
             AppView()
                 .environmentObject(appState)
-                .modelContainer(for: [Routine.self, UserModel.self])
         }
     }
 

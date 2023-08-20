@@ -23,3 +23,11 @@ let defaultColors: [String: Color] = [
     "blueGray": Color(hex: 0xff667d8a),
     "black": Color(hex: 0xff344047)
 ]
+
+let defaultRoutines = [
+    Routine(color: Color.blue.toHex, title: "media"),
+    Routine(color: Color.green.toHex, title: "sleep"),
+    Routine(color: Color.orange.toHex, title: "work"),
+    Routine(color: Color.gray.toHex, title: "sport"),
+    Routine(color: Color.yellow.toHex, title: "eat")
+]

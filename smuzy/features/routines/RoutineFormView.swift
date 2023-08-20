@@ -1,4 +1,3 @@
-import SwiftData
 import SwiftUI
 
 struct RoutineFormView: View {
@@ -75,14 +74,5 @@ struct RoutineFormView_Previews: PreviewProvider {
         @State var isRoutineFormOpened = false
         RoutineFormView(isRoutineFormOpened: $isRoutineFormOpened)
             .environmentObject(AppState())
-            .modelContainer(for: Routine.self)
     }
 }
-
-//
-// #Preview {
-//    @State var isRoutineFormOpened = false
-//    RoutineFormView(isRoutineFormOpened: $isRoutineFormOpened)
-//        .environmentObject(AppState())
-//        .modelContainer(for: Routine.self)
-// }

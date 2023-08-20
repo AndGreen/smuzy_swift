@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CalendarView: View {
+struct CalendarScreen: View {
     @Binding var selectedDate: Date
 
     var body: some View {
@@ -46,5 +46,5 @@ struct CalendarView: View {
         set: { _ in }
     )
 
-    return CalendarView(selectedDate: selectedDate)
+    return CalendarScreen(selectedDate: selectedDate)
 }

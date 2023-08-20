@@ -1,4 +1,3 @@
-import SwiftData
 import SwiftUI
 
 struct RoutinesListView: View {
@@ -30,5 +29,4 @@ struct RoutinesListView: View {
 #Preview {
     RoutinesListView()
         .environmentObject(AppState())
-        .modelContainer(for: Routine.self)
 }

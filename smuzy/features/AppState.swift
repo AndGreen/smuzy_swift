@@ -1,5 +1,4 @@
 import Foundation
-import SwiftData
 import SwiftUI
 
 typealias BlockId = Int
@@ -25,12 +24,5 @@ class AppState: ObservableObject {
         self.routines = routines
         self.dayGrid = dayGrid
         self.selectedDate = selectedDate
-    }
-
-    func saveUser(context: ModelContext) {
-        dayGrid.forEach { (_: BlockId, _: RoutineId?) in
-        }
-        let newUser = UserModel(history: dayGrid, routines: routines)
-        context.insert(newUser)
     }
 }

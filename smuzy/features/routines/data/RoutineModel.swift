@@ -6,11 +6,9 @@
 //
 
 import Foundation
-import SwiftData
 import SwiftUI
 
-@Model
-class Routine {
+class Routine: Hashable, Identifiable, Equatable {
     var id: RoutineId
     var color: String
     var title: String
@@ -19,6 +17,14 @@ class Routine {
         self.id = UUID()
         self.color = color
         self.title = title
+    }
+
+    static func == (lhs: Routine, rhs: Routine) -> Bool {
+        return lhs.id == rhs.id
+    }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
     }
 }
 

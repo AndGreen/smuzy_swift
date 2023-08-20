@@ -1,4 +1,3 @@
-import SwiftData
 import SwiftUI
 
 struct RoutineButtonView: View {
@@ -31,7 +30,6 @@ struct RoutineButtonView: View {
 
 #Preview {
     RoutineButtonView(routine: Routine(color: Color.blue.toHex, title: "Morning Routine")) {}
-        .modelContainer(for: Routine.self)
         .previewLayout(.sizeThatFits)
         .padding()
 }
