@@ -11,11 +11,13 @@ import SwiftUI
 let numRows = 8
 let numColumns = 8
 let timeInterval: TimeInterval = 3 * 60 * 60
-let borderColor = Color.black.opacity(0.3)
+let borderColorLight = Color.black.opacity(0.3)
+let borderColorDark = Color.black.opacity(1)
 let textColumnWidth: Double = 50
 let paddings: Double = 4
 
 struct DayGridView: View {
+    @Environment(\.colorScheme) var colorScheme
     @EnvironmentObject private var appState: AppState
     @State var feedbackGenerator: UIImpactFeedbackGenerator? = nil
     @State private var animationAmount = 1.0
@@ -52,7 +54,7 @@ struct DayGridView: View {
                 .cornerRadius(20)
                 .overlay(
                     RoundedRectangle(cornerRadius: 20)
-                        .stroke(borderColor, lineWidth: 1)
+                        .stroke(colorScheme == .dark ? borderColorDark : borderColorLight, lineWidth: 1)
                 )
 
                 Grid(horizontalSpacing: 0, verticalSpacing: 0,

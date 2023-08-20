@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct DayBlockView: View {
+    @Environment(\.colorScheme) var colorScheme
+
     var edges: [Edge]
     var blockColor: Color?
     var blockWidth: Double
@@ -22,7 +24,8 @@ struct DayBlockView: View {
                 .animation(.easeInOut(duration: 0.2), value: blockColor)
                 .sideBorder(width: 1,
                             edges: edges,
-                            color: borderColor)
+                            color: colorScheme == .dark ?
+                                borderColorDark : borderColorLight)
         }
     }
 }

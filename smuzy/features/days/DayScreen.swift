@@ -12,6 +12,7 @@ struct DayScreen: View {
     @State private var selectedDate = Date()
 
     @EnvironmentObject var appState: AppState
+    @Environment(\.colorScheme) var colorScheme
 
     private var arrowIcon: String {
         return isCalendarOpen ? "chevron.up" : "chevron.down"
@@ -22,7 +23,7 @@ struct DayScreen: View {
             VStack {
                 DayGridView()
                     .padding()
-                    .background(.gray.opacity(0.05))
+                    .background(colorScheme == .dark ? .gray.opacity(0.25) : .gray.opacity(0.05))
                     .clipped()
                 RoutinesListView()
                 Spacer()
