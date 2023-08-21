@@ -18,8 +18,8 @@ struct CircleColorButton: View {
                     .black, lineWidth: isActive ? 2 : 0)
                 .fill(color)
                 .frame(width: 60, height: 60)
-                .opacity(getOpacity())
                 .scaleEffect(isPressed ? 0.9 : 1.0)
+                .opacity(isUsed ? 0.4 : 1)
                 .pressEvents {
                     if !(isUsed || isActive) {
                         withAnimation(.easeInOut(duration: 0.1)) {
@@ -47,15 +47,9 @@ struct CircleColorButton: View {
                 Image(systemName: "xmark")
                     .foregroundColor(.white)
                     .font(.system(size: 25))
+                    .opacity(colorScheme == .dark ? 0.2 : 1)
             }
         }
-    }
-
-    func getOpacity() -> Double {
-        if isUsed {
-            return 0.4
-        }
-        return isPressed ? 0.4 : 1.0
     }
 }
 
