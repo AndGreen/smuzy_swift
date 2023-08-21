@@ -18,12 +18,12 @@
 		585734BA2A91308900FB11A9 /* DayBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585734B92A91308900FB11A9 /* DayBlock.swift */; };
 		585734BC2A92279B00FB11A9 /* DayBlockAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585734BB2A92279B00FB11A9 /* DayBlockAnimation.swift */; };
 		585734BE2A925DAC00FB11A9 /* Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585734BD2A925DAC00FB11A9 /* Other.swift */; };
+		585734C12A92C4FD00FB11A9 /* RoutineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585734C02A92C4FD00FB11A9 /* RoutineButton.swift */; };
 		5884B9FA2A8D66AD00BCFBC3 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884B9F92A8D66AD00BCFBC3 /* View.swift */; };
 		5884B9FC2A8D6C7400BCFBC3 /* CircleColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884B9FB2A8D6C7400BCFBC3 /* CircleColorButton.swift */; };
 		58999CC72A879E84004B4B17 /* CalendarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CC62A879E84004B4B17 /* CalendarScreen.swift */; };
 		58999CC92A87A401004B4B17 /* DayGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CC82A87A401004B4B17 /* DayGrid.swift */; };
 		58999CCD2A87AA33004B4B17 /* RoutineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CCC2A87AA33004B4B17 /* RoutineModel.swift */; };
-		58999CCF2A87AA9D004B4B17 /* RoutineButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CCE2A87AA9D004B4B17 /* RoutineButtonView.swift */; };
 		58999CD12A87AABA004B4B17 /* RoutinesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD02A87AABA004B4B17 /* RoutinesListView.swift */; };
 		58999CD32A87CC69004B4B17 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD22A87CC69004B4B17 /* AppState.swift */; };
 		58999CD62A87CD29004B4B17 /* WrappingHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD52A87CD29004B4B17 /* WrappingHStack.swift */; };
@@ -46,12 +46,12 @@
 		585734B92A91308900FB11A9 /* DayBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayBlock.swift; sourceTree = "<group>"; };
 		585734BB2A92279B00FB11A9 /* DayBlockAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayBlockAnimation.swift; sourceTree = "<group>"; };
 		585734BD2A925DAC00FB11A9 /* Other.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Other.swift; sourceTree = "<group>"; };
+		585734C02A92C4FD00FB11A9 /* RoutineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineButton.swift; sourceTree = "<group>"; };
 		5884B9F92A8D66AD00BCFBC3 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		5884B9FB2A8D6C7400BCFBC3 /* CircleColorButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleColorButton.swift; sourceTree = "<group>"; };
 		58999CC62A879E84004B4B17 /* CalendarScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarScreen.swift; sourceTree = "<group>"; };
 		58999CC82A87A401004B4B17 /* DayGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayGrid.swift; sourceTree = "<group>"; };
 		58999CCC2A87AA33004B4B17 /* RoutineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineModel.swift; sourceTree = "<group>"; };
-		58999CCE2A87AA9D004B4B17 /* RoutineButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineButtonView.swift; sourceTree = "<group>"; };
 		58999CD02A87AABA004B4B17 /* RoutinesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesListView.swift; sourceTree = "<group>"; };
 		58999CD22A87CC69004B4B17 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		58999CD52A87CD29004B4B17 /* WrappingHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappingHStack.swift; sourceTree = "<group>"; };
@@ -201,7 +201,7 @@
 		58999CD92A87D746004B4B17 /* views */ = {
 			isa = PBXGroup;
 			children = (
-				58999CCE2A87AA9D004B4B17 /* RoutineButtonView.swift */,
+				585734C02A92C4FD00FB11A9 /* RoutineButton.swift */,
 				58999CD72A87D707004B4B17 /* AddRoutineButton.swift */,
 				5884B9FB2A8D6C7400BCFBC3 /* CircleColorButton.swift */,
 			);
@@ -305,6 +305,7 @@
 				5837989E2A8B8318007C8A3F /* Date.swift in Sources */,
 				58999CD12A87AABA004B4B17 /* RoutinesListView.swift in Sources */,
 				58999CE32A8823AC004B4B17 /* Constants.swift in Sources */,
+				585734C12A92C4FD00FB11A9 /* RoutineButton.swift in Sources */,
 				584A6A7D2A8797EC005FE04F /* AppView.swift in Sources */,
 				583798A02A8B8323007C8A3F /* Color.swift in Sources */,
 				584A6A6B2A878BA7005FE04F /* DayScreen.swift in Sources */,
@@ -314,7 +315,6 @@
 				58999CD62A87CD29004B4B17 /* WrappingHStack.swift in Sources */,
 				584A6A692A878BA7005FE04F /* Smuzy.swift in Sources */,
 				584A6A7B2A87949A005FE04F /* ProfileScreen.swift in Sources */,
-				58999CCF2A87AA9D004B4B17 /* RoutineButtonView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

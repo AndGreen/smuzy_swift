@@ -46,7 +46,7 @@ struct RoutineFormView: View {
                                     onTap: { color in
                                         activeColor = isActive ? nil : color
                                     },
-                                    isActive: isActive)
+                                    isActive: isActive, isUsed: isUsed(color: colorList[colorName]))
                             }
                         }.padding(.vertical)
                         Spacer()
@@ -66,6 +66,14 @@ struct RoutineFormView: View {
                 )
             }
         }
+    }
+
+    func isUsed(color: Color) -> Bool {
+        let colorList = appState.routines.map { routine in
+            routine.color
+        }
+        print(colorList)
+        return colorList.contains { $0 == color.toHex }
     }
 }
 

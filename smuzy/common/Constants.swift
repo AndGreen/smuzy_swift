@@ -25,9 +25,9 @@ let defaultColors: [String: Color] = [
 ]
 
 let defaultRoutines = [
-    Routine(color: Color.blue.toHex, title: "media"),
-    Routine(color: Color.green.toHex, title: "sleep"),
-    Routine(color: Color.orange.toHex, title: "work"),
-    Routine(color: Color.gray.toHex, title: "sport"),
-    Routine(color: Color.yellow.toHex, title: "eat")
+    Routine(color: defaultColors["blue"]!.toHex, title: "media"),
+    Routine(color: defaultColors["green"]!.toHex, title: "sleep"),
+    Routine(color: defaultColors["orange"]!.toHex, title: "work"),
+    Routine(color: defaultColors["gray"]!.toHex, title: "sport"),
+    Routine(color: defaultColors["yellow"]!.toHex, title: "eat")
 ]

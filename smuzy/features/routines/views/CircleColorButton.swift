@@ -5,27 +5,35 @@ struct CircleColorButton: View {
     var color: Color
     var onTap: (_ color: Color) -> Void
     var isActive: Bool
+    var isUsed: Bool
 
     @State private var isPressed = false
     @State var feedbackGenerator: UIImpactFeedbackGenerator? = nil
+    @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
         ZStack {
             Circle()
-                .foregroundColor(color)
+                .stroke(colorScheme == .dark ? .white :
+                    .black, lineWidth: isActive ? 2 : 0)
+                .fill(color)
                 .frame(width: 60, height: 60)
-                .opacity(isPressed ? 0.4 : 1.0)
+                .opacity(getOpacity())
                 .scaleEffect(isPressed ? 0.9 : 1.0)
                 .pressEvents {
-                    withAnimation(.easeInOut(duration: 0.1)) {
-                        isPressed = true
+                    if !(isUsed || isActive) {
+                        withAnimation(.easeInOut(duration: 0.1)) {
+                            isPressed = true
+                        }
                     }
                 } onRelease: {
-                    withAnimation(.spring) {
-                        isPressed = false
-                        onTap(color)
-                        feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
-                        feedbackGenerator?.prepare()
+                    if !(isUsed || isActive) {
+                        withAnimation(.spring) {
+                            isPressed = false
+                            onTap(color)
+                            feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
+                            feedbackGenerator?.prepare()
+                        }
                     }
                 }
 
@@ -34,14 +42,31 @@ struct CircleColorButton: View {
                     .foregroundColor(.white)
                     .font(.system(size: 25))
             }
+
+            if isUsed {
+                Image(systemName: "xmark")
+                    .foregroundColor(.white)
+                    .font(.system(size: 25))
+            }
         }
+    }
+
+    func getOpacity() -> Double {
+        if isUsed {
+            return 0.4
+        }
+        return isPressed ? 0.4 : 1.0
     }
 }
 
 #Preview("Default") {
-    CircleColorButton(color: defaultColors["red"]!, onTap: { _ in }, isActive: false)
+    CircleColorButton(color: defaultColors["red"]!, onTap: { _ in }, isActive: false, isUsed: false)
 }
 
 #Preview("Active") {
-    CircleColorButton(color: defaultColors["blue"]!, onTap: { _ in }, isActive: true)
+    CircleColorButton(color: defaultColors["blue"]!, onTap: { _ in }, isActive: true, isUsed: false)
+}
+
+#Preview("Used") {
+    CircleColorButton(color: defaultColors["green"]!, onTap: { _ in }, isActive: false, isUsed: true)
 }
