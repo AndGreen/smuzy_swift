@@ -72,7 +72,6 @@ struct RoutineFormView: View {
         let colorList = appState.routines.map { routine in
             routine.color
         }
-        print(colorList)
         return colorList.contains { $0 == color.toHex }
     }
 }
