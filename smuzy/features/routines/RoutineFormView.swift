@@ -5,7 +5,7 @@ struct RoutineFormView: View {
         case title
     }
 
-    @EnvironmentObject var appState: AppState
+    @Environment(AppState.self) var appState
     @State private var title: String = ""
     @State private var activeColor: Color?
     @Binding var isRoutineFormOpened: Bool
@@ -80,6 +80,6 @@ struct RoutineFormView_Previews: PreviewProvider {
     static var previews: some View {
         @State var isRoutineFormOpened = false
         RoutineFormView(isRoutineFormOpened: $isRoutineFormOpened)
-            .environmentObject(AppState())
+            .environment(AppState())
     }
 }

@@ -5,14 +5,20 @@
 //  Created by Andrey Zelenin on 12.08.2023.
 //
 
+import AlertToast
+import SwiftData
 import SwiftUI
 
 struct DayScreen: View {
+    @State private var isToastOpen = false
     @State private var isCalendarOpen = false
     @State private var selectedDate = Date()
 
-    @EnvironmentObject var appState: AppState
+    @Environment(AppState.self) var appState
     @Environment(\.colorScheme) var colorScheme
+
+    @Query var users: [UserModel]
+    @Environment(\.modelContext) private var modelContext
 
     private var arrowIcon: String {
         return isCalendarOpen ? "chevron.up" : "chevron.down"
@@ -30,7 +36,12 @@ struct DayScreen: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .dayViewToolbar(isCalendarOpen: $isCalendarOpen,
-                            selectedDate: $selectedDate)
+                            selectedDate: $selectedDate, onDelete: {
+                                users.forEach { user in
+                                    modelContext.delete(user)
+                                }
+                                isToastOpen = true
+                            })
             .onChange(of: appState.selectedDate) {
                 withAnimation {
                     if selectedDate != appState.selectedDate {
@@ -42,15 +53,33 @@ struct DayScreen: View {
                 appState.selectedDate = newValue
             }
         }
+        .sheet(isPresented: $isCalendarOpen) {
+            CalendarScreen(selectedDate: $selectedDate)
+                .onChange(of: selectedDate) { _, _ in
+                    isCalendarOpen = false
+                }
+        }
+        .toast(isPresenting: $isToastOpen) {
+            AlertToast(displayMode: .hud, type: .complete(.green), title: "Cleared")
+        }
     }
 }
 
 extension View {
     func dayViewToolbar(
         isCalendarOpen: Binding<Bool>,
-        selectedDate: Binding<Date>
+        selectedDate: Binding<Date>,
+        onDelete: @escaping () -> Void
     ) -> some View {
         toolbar {
+            ToolbarItem(placement: .navigationBarLeading) {
+                Button(action:
+                    onDelete)
+                {
+                    Text("Clear").foregroundStyle(.red)
+                }
+            }
+
             ToolbarItem(placement: .principal) {
                 Button(
                     action: {
@@ -64,12 +93,6 @@ extension View {
                                 .offset(x: 0, y: 1)
                         }
                     }
-                    .sheet(isPresented: isCalendarOpen) {
-                        CalendarScreen(selectedDate: selectedDate)
-                            .onChange(of: selectedDate.wrappedValue) { _, _ in
-                                isCalendarOpen.wrappedValue = false
-                            }
-                    }
             }
         }
     }
@@ -77,7 +100,7 @@ extension View {
 
 #Preview {
     DayScreen()
-        .environmentObject(AppState(
+        .environment(AppState(
             routines: defaultRoutines
         ))
 }

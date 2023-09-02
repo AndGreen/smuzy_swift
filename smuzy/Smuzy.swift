@@ -10,11 +10,11 @@ import SwiftUI
 @main
 struct smuzyApp: App {
     var body: some Scene {
-        @StateObject var appState = AppState()
+        @State var appState = AppState()
 
         WindowGroup {
             AppView()
-                .environmentObject(appState)
+                .environment(appState)
                 .modelContainer(for: [RoutineModel.self, UserModel.self])
         }
     }

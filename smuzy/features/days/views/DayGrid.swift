@@ -18,7 +18,7 @@ let paddings: Double = 4
 
 struct DayGridView: View {
     @Environment(\.colorScheme) var colorScheme
-    @EnvironmentObject private var appState: AppState
+    @Environment(AppState.self) var appState
     @State var feedbackGenerator: UIImpactFeedbackGenerator? = nil
     @State private var animationAmount = 1.0
 
@@ -127,5 +127,5 @@ struct DayGridView: View {
 
 #Preview {
     DayGridView()
-        .environmentObject(AppState())
+        .environment(AppState())
 }

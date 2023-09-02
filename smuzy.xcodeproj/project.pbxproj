@@ -21,11 +21,12 @@
 		585734C12A92C4FD00FB11A9 /* RoutineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585734C02A92C4FD00FB11A9 /* RoutineButton.swift */; };
 		5884B9FA2A8D66AD00BCFBC3 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884B9F92A8D66AD00BCFBC3 /* View.swift */; };
 		5884B9FC2A8D6C7400BCFBC3 /* CircleColorButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5884B9FB2A8D6C7400BCFBC3 /* CircleColorButton.swift */; };
+		58878A652A98BD6700D5F140 /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = 58878A642A98BD6700D5F140 /* AlertToast */; };
 		58999CC72A879E84004B4B17 /* CalendarScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CC62A879E84004B4B17 /* CalendarScreen.swift */; };
 		58999CC92A87A401004B4B17 /* DayGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CC82A87A401004B4B17 /* DayGrid.swift */; };
 		58999CCD2A87AA33004B4B17 /* RoutineModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CCC2A87AA33004B4B17 /* RoutineModel.swift */; };
 		58999CD12A87AABA004B4B17 /* RoutinesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD02A87AABA004B4B17 /* RoutinesListView.swift */; };
-		58999CD32A87CC69004B4B17 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD22A87CC69004B4B17 /* AppState.swift */; };
+		58999CD32A87CC69004B4B17 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD22A87CC69004B4B17 /* State.swift */; };
 		58999CD62A87CD29004B4B17 /* WrappingHStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD52A87CD29004B4B17 /* WrappingHStack.swift */; };
 		58999CD82A87D707004B4B17 /* AddRoutineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD72A87D707004B4B17 /* AddRoutineButton.swift */; };
 		58999CDC2A87DB48004B4B17 /* RoutineFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CDB2A87DB48004B4B17 /* RoutineFormView.swift */; };
@@ -53,7 +54,7 @@
 		58999CC82A87A401004B4B17 /* DayGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayGrid.swift; sourceTree = "<group>"; };
 		58999CCC2A87AA33004B4B17 /* RoutineModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineModel.swift; sourceTree = "<group>"; };
 		58999CD02A87AABA004B4B17 /* RoutinesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutinesListView.swift; sourceTree = "<group>"; };
-		58999CD22A87CC69004B4B17 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		58999CD22A87CC69004B4B17 /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		58999CD52A87CD29004B4B17 /* WrappingHStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrappingHStack.swift; sourceTree = "<group>"; };
 		58999CD72A87D707004B4B17 /* AddRoutineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineButton.swift; sourceTree = "<group>"; };
 		58999CDB2A87DB48004B4B17 /* RoutineFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineFormView.swift; sourceTree = "<group>"; };
@@ -66,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58878A652A98BD6700D5F140 /* AlertToast in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +106,8 @@
 			children = (
 				584A6A762A878EA9005FE04F /* common */,
 				584A6A772A878EAE005FE04F /* features */,
+				584A6A7C2A8797EC005FE04F /* App.swift */,
+				58999CD22A87CC69004B4B17 /* State.swift */,
 				584A6A682A878BA7005FE04F /* Smuzy.swift */,
 				584A6A6C2A878BA8005FE04F /* Assets.xcassets */,
 				584A6A6E2A878BA8005FE04F /* Preview Content */,
@@ -122,6 +126,7 @@
 		584A6A762A878EA9005FE04F /* common */ = {
 			isa = PBXGroup;
 			children = (
+				585498DC2AA3C4330075CC53 /* models */,
 				5837989C2A8B830E007C8A3F /* extensions */,
 				58999CD42A87CD1E004B4B17 /* views */,
 				58999CE22A8823AC004B4B17 /* Constants.swift */,
@@ -135,8 +140,6 @@
 				58999CCB2A87AA23004B4B17 /* routines */,
 				584A6A792A87947F005FE04F /* profile */,
 				584A6A782A878F53005FE04F /* days */,
-				584A6A7C2A8797EC005FE04F /* App.swift */,
-				58999CD22A87CC69004B4B17 /* AppState.swift */,
 			);
 			path = features;
 			sourceTree = "<group>";
@@ -144,7 +147,6 @@
 		584A6A782A878F53005FE04F /* days */ = {
 			isa = PBXGroup;
 			children = (
-				58999CDF2A8821BA004B4B17 /* data */,
 				58999CCA2A87A8A2004B4B17 /* views */,
 				58999CC62A879E84004B4B17 /* CalendarScreen.swift */,
 				584A6A6A2A878BA7005FE04F /* DayScreen.swift */,
@@ -156,9 +158,17 @@
 			isa = PBXGroup;
 			children = (
 				584A6A7A2A87949A005FE04F /* ProfileScreen.swift */,
-				58D5558C2A88F9D8003B798E /* UserModel.swift */,
 			);
 			path = profile;
+			sourceTree = "<group>";
+		};
+		585498DC2AA3C4330075CC53 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				58D5558C2A88F9D8003B798E /* UserModel.swift */,
+				58999CCC2A87AA33004B4B17 /* RoutineModel.swift */,
+			);
+			path = models;
 			sourceTree = "<group>";
 		};
 		585734BF2A925E2C00FB11A9 /* block */ = {
@@ -182,7 +192,6 @@
 		58999CCB2A87AA23004B4B17 /* routines */ = {
 			isa = PBXGroup;
 			children = (
-				58999CDA2A87D75B004B4B17 /* data */,
 				58999CD92A87D746004B4B17 /* views */,
 				58999CD02A87AABA004B4B17 /* RoutinesListView.swift */,
 				58999CDB2A87DB48004B4B17 /* RoutineFormView.swift */,
@@ -208,21 +217,6 @@
 			path = views;
 			sourceTree = "<group>";
 		};
-		58999CDA2A87D75B004B4B17 /* data */ = {
-			isa = PBXGroup;
-			children = (
-				58999CCC2A87AA33004B4B17 /* RoutineModel.swift */,
-			);
-			path = data;
-			sourceTree = "<group>";
-		};
-		58999CDF2A8821BA004B4B17 /* data */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = data;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -239,6 +233,9 @@
 			dependencies = (
 			);
 			name = smuzy;
+			packageProductDependencies = (
+				58878A642A98BD6700D5F140 /* AlertToast */,
+			);
 			productName = smuzy;
 			productReference = 584A6A652A878BA7005FE04F /* smuzy.app */;
 			productType = "com.apple.product-type.application";
@@ -267,6 +264,9 @@
 				Base,
 			);
 			mainGroup = 584A6A5C2A878BA7005FE04F;
+			packageReferences = (
+				58878A632A98BD6700D5F140 /* XCRemoteSwiftPackageReference "AlertToast" */,
+			);
 			productRefGroup = 584A6A662A878BA7005FE04F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -298,7 +298,7 @@
 				5884B9FC2A8D6C7400BCFBC3 /* CircleColorButton.swift in Sources */,
 				585734BC2A92279B00FB11A9 /* DayBlockAnimation.swift in Sources */,
 				58D5558D2A88F9D8003B798E /* UserModel.swift in Sources */,
-				58999CD32A87CC69004B4B17 /* AppState.swift in Sources */,
+				58999CD32A87CC69004B4B17 /* State.swift in Sources */,
 				58999CDC2A87DB48004B4B17 /* RoutineFormView.swift in Sources */,
 				5884B9FA2A8D66AD00BCFBC3 /* View.swift in Sources */,
 				585734BE2A925DAC00FB11A9 /* Other.swift in Sources */,
@@ -371,7 +371,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -425,7 +425,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -521,6 +521,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		58878A632A98BD6700D5F140 /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.3.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		58878A642A98BD6700D5F140 /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 58878A632A98BD6700D5F140 /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 584A6A5D2A878BA7005FE04F /* Project object */;
 }

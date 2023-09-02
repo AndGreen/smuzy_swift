@@ -13,8 +13,7 @@ class UserModel {
     @Attribute(.unique) var id: UUID
     var history: Blocks
 
-    @Relationship()
-    var routines: [RoutineModel]
+    @Relationship(deleteRule: .nullify) var routines: [RoutineModel]
 
     init(id: UUID = UUID(),
          history: Blocks,

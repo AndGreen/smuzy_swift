@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct RoutinesListView: View {
-    @EnvironmentObject var appState: AppState
+    @Environment(AppState.self) var appState
     @State private var isRoutineFormOpened = false
 
     var body: some View {
@@ -32,5 +32,5 @@ struct RoutinesListView: View {
 
 #Preview {
     RoutinesListView()
-        .environmentObject(AppState(routines: defaultRoutines))
+        .environment(AppState(routines: defaultRoutines))
 }

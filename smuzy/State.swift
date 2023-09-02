@@ -5,11 +5,12 @@ typealias BlockId = Int
 typealias RoutineId = UUID
 typealias Blocks = [BlockId: RoutineId]
 
-class AppState: ObservableObject {
-    @Published var routines: [Routine]
-    @Published var dayGrid: Blocks
-    @Published var selectedDate: Date
-    @Published var selectedRoutine: Routine?
+@Observable
+class AppState {
+    var routines: [Routine]
+    var dayGrid: Blocks
+    var selectedDate: Date
+    var selectedRoutine: Routine?
 
     init(
         selectedRoutine: Routine? = nil,

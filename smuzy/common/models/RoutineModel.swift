@@ -10,13 +10,13 @@ import SwiftData
 import SwiftUI
 
 @Model
-class RoutineModel: Hashable, Identifiable, Equatable {
+class RoutineModel {
     var id: RoutineId
     var color: String
     var title: String
 
-    init(color: String, title: String) {
-        self.id = UUID()
+    init(id: UUID = UUID(), color: String, title: String) {
+        self.id = id
         self.color = color
         self.title = title
     }
@@ -27,8 +27,8 @@ class Routine: Hashable, Identifiable, Equatable {
     var color: String
     var title: String
 
-    init(color: String, title: String) {
-        self.id = UUID()
+    init(id: UUID = UUID(), color: String, title: String) {
+        self.id = id
         self.color = color
         self.title = title
     }
@@ -45,7 +45,11 @@ class Routine: Hashable, Identifiable, Equatable {
 extension [RoutineModel] {
     var data: [Routine] {
         return map { routineModel in
-            Routine(color: routineModel.color, title: routineModel.title)
+            Routine(
+                id: routineModel.id,
+                color: routineModel.color,
+                title: routineModel.title
+            )
         }
     }
 }
@@ -59,7 +63,11 @@ extension [Routine] {
 
     var model: [RoutineModel] {
         return self.map { routine in
-            RoutineModel(color: routine.color, title: routine.title)
+            RoutineModel(
+                id: routine.id,
+                color: routine.color,
+                title: routine.title
+            )
         }
     }
 }
