@@ -17,7 +17,7 @@ struct DayScreen: View {
     @Environment(AppState.self) var appState
     @Environment(\.colorScheme) var colorScheme
 
-    @Query var users: [UserModel]
+    @Query var routines: [Routine]
     @Environment(\.modelContext) private var modelContext
 
     private var arrowIcon: String {
@@ -37,8 +37,8 @@ struct DayScreen: View {
             .navigationBarTitleDisplayMode(.inline)
             .dayViewToolbar(isCalendarOpen: $isCalendarOpen,
                             selectedDate: $selectedDate, onDelete: {
-                                users.forEach { user in
-                                    modelContext.delete(user)
+                                routines.forEach { routine in
+                                    modelContext.delete(routine)
                                 }
                                 isToastOpen = true
                             })
@@ -100,7 +100,6 @@ extension View {
 
 #Preview {
     DayScreen()
-        .environment(AppState(
-            routines: defaultRoutines
-        ))
+        .environment(AppState())
+        .modelContainer(for: Routine.self)
 }

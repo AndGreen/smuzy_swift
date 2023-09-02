@@ -1,3 +1,4 @@
+import SwiftData
 import SwiftUI
 
 struct RoutineFormView: View {
@@ -5,7 +6,8 @@ struct RoutineFormView: View {
         case title
     }
 
-    @Environment(AppState.self) var appState
+    @Environment(\.modelContext) private var modelContext
+    @Query var routines: [Routine]
     @State private var title: String = ""
     @State private var activeColor: Color?
     @Binding var isRoutineFormOpened: Bool
@@ -59,7 +61,9 @@ struct RoutineFormView: View {
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(trailing:
                     Button("Save") {
-                        appState.routines.append(Routine(color: activeColor!.toHex, title: title))
+                        let newRoutines = Routine(color: activeColor!.toHex, title: title)
+
+                        modelContext.insert(newRoutines)
                         isRoutineFormOpened = false
                     }
                     .disabled(isSaveButtonDisabled)
@@ -69,7 +73,7 @@ struct RoutineFormView: View {
     }
 
     func isUsed(color: Color) -> Bool {
-        let colorList = appState.routines.map { routine in
+        let colorList = routines.map { routine in
             routine.color
         }
         return colorList.contains { $0 == color.toHex }
@@ -81,5 +85,6 @@ struct RoutineFormView_Previews: PreviewProvider {
         @State var isRoutineFormOpened = false
         RoutineFormView(isRoutineFormOpened: $isRoutineFormOpened)
             .environment(AppState())
+            .modelContainer(for: Routine.self)
     }
 }

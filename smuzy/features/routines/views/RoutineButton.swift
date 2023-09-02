@@ -46,6 +46,7 @@ struct RoutineButtonView: View {
 
 #Preview {
     RoutineButtonView(routine: Routine(color: Color.blue.toHex, title: "Morning Routine"), isActive: false, action: {}, onEdit: {}, onDelete: {})
+        .modelContainer(for: Routine.self)
         .previewLayout(.sizeThatFits)
         .padding()
 }

@@ -15,7 +15,7 @@ struct smuzyApp: App {
         WindowGroup {
             AppView()
                 .environment(appState)
-                .modelContainer(for: [RoutineModel.self, UserModel.self])
+                .modelContainer(for: [Routine.self, Block.self])
         }
     }
 

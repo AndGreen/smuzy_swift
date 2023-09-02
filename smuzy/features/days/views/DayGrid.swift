@@ -6,10 +6,11 @@
 //
 
 import CoreHaptics
+import SwiftData
 import SwiftUI
 
 let numRows = 8
-let numColumns = 8
+let numColumns = 9
 let timeInterval: TimeInterval = 3 * 60 * 60
 let borderColorLight = Color.black.opacity(0.3)
 let borderColorDark = Color.black.opacity(1)
@@ -21,6 +22,7 @@ struct DayGridView: View {
     @Environment(AppState.self) var appState
     @State var feedbackGenerator: UIImpactFeedbackGenerator? = nil
     @State private var animationAmount = 1.0
+    @Query private var routines: [Routine]
 
     var body: some View {
         let blockWidth = Double((UIScreen.screenWidth - textColumnWidth) / Double(numColumns)) - paddings
@@ -30,7 +32,8 @@ struct DayGridView: View {
                 ForEach(0 ..< numRows, id: \.self) { row in
                     Text("\(timeText(for: row))")
                         .foregroundColor(.gray.opacity(0.4))
-                        .frame(width: 50, height: blockWidth)
+                        .font(.system(size: 15))
+                        .frame(width: 42, height: blockWidth)
                 }
             }
             ZStack {
@@ -95,7 +98,7 @@ struct DayGridView: View {
         let startBlockId = appState.selectedDate.startOfDay.blockId
         let blockId = startBlockId + row * numColumns + column
         let blockRoutineId = appState.dayGrid[blockId]
-        let blockColor = appState.routines.colorMap[blockRoutineId ?? RoutineId()]
+        let blockColor = routines.colorMap[blockRoutineId ?? RoutineId()]
         return (blockId, blockColor)
     }
 

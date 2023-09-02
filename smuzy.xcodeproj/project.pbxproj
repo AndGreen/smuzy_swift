@@ -15,6 +15,7 @@
 		584A6A702A878BA8005FE04F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 584A6A6F2A878BA8005FE04F /* Preview Assets.xcassets */; };
 		584A6A7B2A87949A005FE04F /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584A6A7A2A87949A005FE04F /* ProfileScreen.swift */; };
 		584A6A7D2A8797EC005FE04F /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584A6A7C2A8797EC005FE04F /* App.swift */; };
+		585498DE2AA3CA940075CC53 /* BlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585498DD2AA3CA940075CC53 /* BlockModel.swift */; };
 		585734BA2A91308900FB11A9 /* DayBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585734B92A91308900FB11A9 /* DayBlock.swift */; };
 		585734BC2A92279B00FB11A9 /* DayBlockAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585734BB2A92279B00FB11A9 /* DayBlockAnimation.swift */; };
 		585734BE2A925DAC00FB11A9 /* Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585734BD2A925DAC00FB11A9 /* Other.swift */; };
@@ -31,7 +32,6 @@
 		58999CD82A87D707004B4B17 /* AddRoutineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CD72A87D707004B4B17 /* AddRoutineButton.swift */; };
 		58999CDC2A87DB48004B4B17 /* RoutineFormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CDB2A87DB48004B4B17 /* RoutineFormView.swift */; };
 		58999CE32A8823AC004B4B17 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58999CE22A8823AC004B4B17 /* Constants.swift */; };
-		58D5558D2A88F9D8003B798E /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D5558C2A88F9D8003B798E /* UserModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +44,7 @@
 		584A6A6F2A878BA8005FE04F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		584A6A7A2A87949A005FE04F /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
 		584A6A7C2A8797EC005FE04F /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		585498DD2AA3CA940075CC53 /* BlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockModel.swift; sourceTree = "<group>"; };
 		585734B92A91308900FB11A9 /* DayBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayBlock.swift; sourceTree = "<group>"; };
 		585734BB2A92279B00FB11A9 /* DayBlockAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayBlockAnimation.swift; sourceTree = "<group>"; };
 		585734BD2A925DAC00FB11A9 /* Other.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Other.swift; sourceTree = "<group>"; };
@@ -59,7 +60,6 @@
 		58999CD72A87D707004B4B17 /* AddRoutineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRoutineButton.swift; sourceTree = "<group>"; };
 		58999CDB2A87DB48004B4B17 /* RoutineFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineFormView.swift; sourceTree = "<group>"; };
 		58999CE22A8823AC004B4B17 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		58D5558C2A88F9D8003B798E /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,8 +165,8 @@
 		585498DC2AA3C4330075CC53 /* models */ = {
 			isa = PBXGroup;
 			children = (
-				58D5558C2A88F9D8003B798E /* UserModel.swift */,
 				58999CCC2A87AA33004B4B17 /* RoutineModel.swift */,
+				585498DD2AA3CA940075CC53 /* BlockModel.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -297,7 +297,6 @@
 				58999CC72A879E84004B4B17 /* CalendarScreen.swift in Sources */,
 				5884B9FC2A8D6C7400BCFBC3 /* CircleColorButton.swift in Sources */,
 				585734BC2A92279B00FB11A9 /* DayBlockAnimation.swift in Sources */,
-				58D5558D2A88F9D8003B798E /* UserModel.swift in Sources */,
 				58999CD32A87CC69004B4B17 /* State.swift in Sources */,
 				58999CDC2A87DB48004B4B17 /* RoutineFormView.swift in Sources */,
 				5884B9FA2A8D66AD00BCFBC3 /* View.swift in Sources */,
@@ -308,6 +307,7 @@
 				585734C12A92C4FD00FB11A9 /* RoutineButton.swift in Sources */,
 				584A6A7D2A8797EC005FE04F /* App.swift in Sources */,
 				583798A02A8B8323007C8A3F /* Color.swift in Sources */,
+				585498DE2AA3CA940075CC53 /* BlockModel.swift in Sources */,
 				584A6A6B2A878BA7005FE04F /* DayScreen.swift in Sources */,
 				585734BA2A91308900FB11A9 /* DayBlock.swift in Sources */,
 				58999CC92A87A401004B4B17 /* DayGrid.swift in Sources */,

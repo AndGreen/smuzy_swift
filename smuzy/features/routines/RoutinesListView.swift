@@ -1,19 +1,22 @@
+import SwiftData
 import SwiftUI
 
 struct RoutinesListView: View {
     @Environment(AppState.self) var appState
+    @Environment(\.modelContext) private var modelContext
+    @Query var routines: [Routine]
     @State private var isRoutineFormOpened = false
 
     var body: some View {
         ScrollView {
             WrappingHStack(alignment: .leading) {
-                ForEach(appState.routines) { routine in
+                ForEach(routines) { routine in
                     let isActive = appState.selectedRoutine == routine
                     RoutineButtonView(routine: routine, isActive: isActive, action: {
                         appState.selectedRoutine = isActive ? nil : routine
                     }, onEdit: {}, onDelete: {
                         withAnimation {
-                            appState.routines = appState.routines.filter { $0.id != routine.id }
+                            modelContext.delete(routine)
                         }
                     })
                 }
@@ -32,5 +35,6 @@ struct RoutinesListView: View {
 
 #Preview {
     RoutinesListView()
-        .environment(AppState(routines: defaultRoutines))
+        .modelContainer(for: Routine.self)
+        .environment(AppState())
 }
