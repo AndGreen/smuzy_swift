@@ -10,12 +10,17 @@ struct AppView: View {
         TabView {
             DayScreen()
                 .tabItem {
-                    Image(systemName: "calendar").symbolEffect(.pulse)
+                    Label("Home", systemImage: "calendar")
+                }
+
+            Text("Coming soon 🏗️")
+                .tabItem {
+                    Label("Stats", systemImage: "chart.bar.xaxis")
                 }
 
             ProfileScreen()
                 .tabItem {
-                    Image(systemName: "person.fill").symbolEffect(.pulse)
+                    Label("Settings", systemImage: "gearshape.fill")
                 }
         }
         .onAppear {
