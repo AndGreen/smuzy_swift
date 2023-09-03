@@ -29,12 +29,7 @@ struct DayScreen: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .dayViewToolbar(isCalendarOpen: $isCalendarOpen,
-                            selectedDate: $selectedDate, onDelete: {
-                                routines.forEach { routine in
-                                    modelContext.delete(routine)
-                                }
-                                isToastOpen = true
-                            })
+                            selectedDate: $selectedDate)
             .onChange(of: appState.selectedDate) {
                 withAnimation {
                     if selectedDate != appState.selectedDate {
@@ -61,18 +56,9 @@ struct DayScreen: View {
 extension View {
     func dayViewToolbar(
         isCalendarOpen: Binding<Bool>,
-        selectedDate: Binding<Date>,
-        onDelete: @escaping () -> Void
+        selectedDate: Binding<Date>
     ) -> some View {
         toolbar {
-            ToolbarItem(placement: .navigationBarLeading) {
-                Button(action:
-                    onDelete)
-                {
-                    Text("Clear").foregroundStyle(.red)
-                }
-            }
-
             ToolbarItem(placement: .principal) {
                 Button(
                     action: {
