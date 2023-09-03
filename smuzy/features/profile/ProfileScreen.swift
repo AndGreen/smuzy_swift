@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ProfileScreen: View {
     var body: some View {
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
+
         NavigationView {
             List {
                 Button(action: {
@@ -22,6 +24,13 @@ struct ProfileScreen: View {
                 }) {
                     Text("Restore from Backup")
                 }
+
+                Text("App version " + (appVersion ?? ""))
+                    .frame(
+                        maxWidth: .infinity, alignment: .center)
+                    .foregroundColor(.gray.opacity(0.5))
+                    .padding(.vertical, 20)
+                    .listRowBackground(Color.clear)
             }
             .navigationBarTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
