@@ -2,31 +2,48 @@ import SwiftUI
 
 extension View {
     func pressEvents(onPress: @escaping (() -> Void), onRelease: @escaping (() -> Void)) -> some View {
-        modifier(ButtonPress(onPress: {
-            onPress()
-        }, onRelease: {
-            onRelease()
-        }))
+        modifier(ButtonPress(onPress: onPress, onRelease: onRelease))
     }
 
-    func sideBorder(width: CGFloat, edges: [Edge], color: Color) -> some View {
-        overlay(EdgeBorder(width: width, edges: edges).foregroundColor(color))
+    func sideBorder(widths: [Edge: CGFloat], color: Color) -> some View {
+        overlay(EdgeBorder(widths: widths).foregroundColor(color))
     }
 }
 
 struct EdgeBorder: Shape {
-    var width: CGFloat
-    var edges: [Edge]
+    var widths: [Edge: CGFloat]
 
     func path(in rect: CGRect) -> Path {
-        edges.map { edge -> Path in
-            switch edge {
-            case .top: return Path(.init(x: rect.minX, y: rect.minY, width: rect.width, height: width))
-            case .bottom: return Path(.init(x: rect.minX, y: rect.maxY - width, width: rect.width, height: width))
-            case .leading: return Path(.init(x: rect.minX, y: rect.minY, width: width, height: rect.height))
-            case .trailing: return Path(.init(x: rect.maxX - width, y: rect.minY, width: width, height: rect.height))
+        Path { path in
+            for (edge, width) in widths {
+                switch edge {
+                case .top:
+                    path.move(to: CGPoint(x: rect.minX, y: rect.minY))
+                    path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY))
+                    path.addLine(to: CGPoint(x: rect.maxX, y: rect.minY + width))
+                    path.addLine(to: CGPoint(x: rect.minX, y: rect.minY + width))
+                    path.closeSubpath()
+                case .bottom:
+                    path.move(to: CGPoint(x: rect.minX, y: rect.maxY))
+                    path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+                    path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY - width))
+                    path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY - width))
+                    path.closeSubpath()
+                case .leading:
+                    path.move(to: CGPoint(x: rect.minX, y: rect.minY))
+                    path.addLine(to: CGPoint(x: rect.minX + width, y: rect.minY))
+                    path.addLine(to: CGPoint(x: rect.minX + width, y: rect.maxY))
+                    path.addLine(to: CGPoint(x: rect.minX, y: rect.maxY))
+                    path.closeSubpath()
+                case .trailing:
+                    path.move(to: CGPoint(x: rect.maxX, y: rect.minY))
+                    path.addLine(to: CGPoint(x: rect.maxX - width, y: rect.minY))
+                    path.addLine(to: CGPoint(x: rect.maxX - width, y: rect.maxY))
+                    path.addLine(to: CGPoint(x: rect.maxX, y: rect.maxY))
+                    path.closeSubpath()
+                }
             }
-        }.reduce(into: Path()) { $0.addPath($1) }
+        }
     }
 }
 

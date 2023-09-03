@@ -57,6 +57,6 @@ extension Date {
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: self)
         let firstDayBlockID = startOfDay.getBlockId()
-        return firstDayBlockID ... (firstDayBlockID + rowCount * colCount)
+        return firstDayBlockID ... (firstDayBlockID + numRows * numColumns)
     }
 }

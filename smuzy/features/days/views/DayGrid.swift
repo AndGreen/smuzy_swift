@@ -9,8 +9,6 @@ import CoreHaptics
 import SwiftData
 import SwiftUI
 
-let numRows = 8
-let numColumns = 9
 let timeInterval: TimeInterval = 3 * 60 * 60
 let borderColorLight = Color.black.opacity(0.3)
 let borderColorDark = Color.black.opacity(1)
@@ -36,12 +34,13 @@ struct DayGridView: View {
                         .frame(width: 42, height: blockWidth)
                 }
             }
-            ZStack {
+            ZStack(alignment: .topLeading) {
                 Grid(horizontalSpacing: 0, verticalSpacing: 0) {
                     ForEach(0 ..< numRows, id: \.self) { row in
                         GridRow {
                             ForEach(0 ..< numColumns, id: \.self) { column in
-                                let (_, blockColor) = getBlock(row: row, column: column)
+                                let (_, blockColor) = appState.getBlock(routines: routines, row: row, column: column)
+
                                 let edges = getEdges(row: row,
                                                      column: column)
 
@@ -60,12 +59,19 @@ struct DayGridView: View {
                         .stroke(colorScheme == .dark ? borderColorDark : borderColorLight, lineWidth: 1)
                 )
 
+                if appState.selectedDate.startOfDay == Date.now.startOfDay {
+                    CurrentBlock(
+                        routines: routines,
+                        blockWidth: blockWidth
+                    )
+                }
+
                 Grid(horizontalSpacing: 0, verticalSpacing: 0,
                      content: {
                          ForEach(0 ..< numRows, id: \.self) { row in
                              GridRow {
                                  ForEach(0 ..< numColumns, id: \.self) { column in
-                                     let (blockId, blockColor) = getBlock(row: row, column: column)
+                                     let (blockId, blockColor) = appState.getBlock(routines: routines, row: row, column: column)
 
                                      DayBlockAnimation(
                                          blockColor: blockColor,
@@ -94,22 +100,16 @@ struct DayGridView: View {
         }
     }
 
-    func getBlock(row: Int, column: Int) -> (blockId: Int, blockColor: Color?) {
-        let startBlockId = appState.selectedDate.startOfDay.blockId
-        let blockId = startBlockId + row * numColumns + column
-        let blockRoutineId = appState.dayGrid[blockId]
-        let blockColor = routines.colorMap[blockRoutineId ?? RoutineId()]
-        return (blockId, blockColor)
-    }
-
-    func getEdges(row: Int, column: Int) -> [Edge] {
+    func getEdges(row: Int, column: Int) -> [Edge: CGFloat] {
         let isFirstRow = row == 0
         let isFirstColumn = column == 0
 
-        var edges: [Edge] = []
+        var edges: [Edge: CGFloat] = [:]
 
-        if !isFirstRow { edges.append(.top) }
-        if !isFirstColumn { edges.append(.leading) }
+        if !isFirstRow { edges[.top] = 1 }
+        if !isFirstColumn {
+            edges[.leading] = column % 3 == 0 ? 2.5 : 1
+        }
 
         return edges
     }

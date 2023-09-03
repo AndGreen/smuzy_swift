@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  smuzy
-//
-//  Created by Andrey Zelenin on 12.08.2023.
-//
-
 import AlertToast
 import SwiftData
 import SwiftUI
@@ -29,7 +22,7 @@ struct DayScreen: View {
             VStack {
                 DayGridView()
                     .padding()
-                    .background(colorScheme == .dark ? .gray.opacity(0.25) : .gray.opacity(0.05))
+                    .background(colorScheme == .dark ? bgDark : bgLight)
                     .clipped()
                 RoutinesListView()
                 Spacer()

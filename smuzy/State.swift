@@ -1,4 +1,3 @@
-import Foundation
 import SwiftUI
 
 typealias BlockId = Int
@@ -19,5 +18,13 @@ class AppState {
         self.selectedRoutine = selectedRoutine
         self.dayGrid = dayGrid
         self.selectedDate = selectedDate
+    }
+
+    func getBlock(routines: [Routine], row: Int, column: Int) -> (blockId: Int, blockColor: Color?) {
+        let selectedDayStartBlockId = selectedDate.startOfDay.blockId
+        let blockId = selectedDayStartBlockId + row * numColumns + column
+        let blockRoutineId = dayGrid[blockId]
+        let blockColor = routines.colorMap[blockRoutineId ?? RoutineId()]
+        return (blockId, blockColor)
     }
 }

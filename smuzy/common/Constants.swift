@@ -1,9 +1,12 @@
 import Foundation
 import SwiftUI
 
-let rowCount = 8
-let colCount = 9
+let numRows = 8
+let numColumns = 9
 let blockDurationMin = 20
+
+let bgLight = Color(hex: 0xfff9f9fa)
+let bgDark = Color(hex: 0xff232325)
 
 let defaultColors: [String: Color] = [
     "red": Color(hex: 0xffe25241),
