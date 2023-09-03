@@ -1,10 +1,3 @@
-//
-//  day_grid_view.swift
-//  smuzy
-//
-//  Created by Andrey Zelenin on 12.08.2023.
-//
-
 import CoreHaptics
 import SwiftData
 import SwiftUI
@@ -59,12 +52,10 @@ struct DayGridView: View {
                         .stroke(colorScheme == .dark ? borderColorDark : borderColorLight, lineWidth: 1)
                 )
 
-                if appState.selectedDate.startOfDay == Date.now.startOfDay {
-                    CurrentBlock(
-                        routines: routines,
-                        blockWidth: blockWidth
-                    )
-                }
+                CurrentBlock(
+                    routines: routines,
+                    blockWidth: blockWidth
+                )
 
                 Grid(horizontalSpacing: 0, verticalSpacing: 0,
                      content: {
