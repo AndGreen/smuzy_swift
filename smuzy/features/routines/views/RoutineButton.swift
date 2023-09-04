@@ -26,11 +26,11 @@ struct RoutineButtonView: View {
             .background(isActive ? Color.blue.opacity(0.8) : Color.gray.opacity(0.1))
             .foregroundColor(isActive ? .white : .primary)
             .contextMenu {
-//                Button {
-//                    onEdit()
-//                } label: {
-//                    Label("Edit", systemImage: "pencil")
-//                }
+                Button {
+                    onEdit()
+                } label: {
+                    Label("Edit", systemImage: "pencil")
+                }
 
                 Button(role: .destructive) {
                     onDelete()

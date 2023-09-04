@@ -11,6 +11,7 @@ struct RoutineFormView: View {
     @State private var title: String = ""
     @State private var activeColor: Color?
     @Binding var isRoutineFormOpened: Bool
+    @Binding var routine: Routine?
     @FocusState private var focusedField: FocusedField?
 
     var colorList: [Color] {
@@ -43,6 +44,7 @@ struct RoutineFormView: View {
                             ForEach(colorList.indices, id: \.self) { colorName in
                                 let isActive =
                                     activeColor == colorList[colorName]
+
                                 CircleColorButton(
                                     color: colorList[colorName],
                                     onTap: { color in
@@ -56,14 +58,23 @@ struct RoutineFormView: View {
                 }
                 .onAppear {
                     focusedField = .title
+                    if routine != nil {
+                        activeColor = Color.fromHex(routine!.color)
+                        title = routine!.title
+                    }
                 }
-                .navigationTitle("New Routine")
+                .navigationTitle(routine != nil ? "Edit Routine" : "New Routine")
                 .navigationBarTitleDisplayMode(.inline)
                 .navigationBarItems(trailing:
                     Button("Save") {
-                        let newRoutines = Routine(color: activeColor!.toHex, title: title)
+                        if routine == nil {
+                            let newRoutines = Routine(color: activeColor!.toHex, title: title)
 
-                        modelContext.insert(newRoutines)
+                            modelContext.insert(newRoutines)
+                        } else {
+                            routine!.color = activeColor!.toHex
+                            routine!.title = title
+                        }
                         isRoutineFormOpened = false
                     }
                     .disabled(isSaveButtonDisabled)
@@ -73,18 +84,47 @@ struct RoutineFormView: View {
     }
 
     func isUsed(color: Color) -> Bool {
-        let colorList = routines.map { routine in
-            routine.color
-        }
+        let colorList =
+            routines
+                .map { routine in
+                    routine.color
+                }
+                .filter { $0 != routine?.color }
+
         return colorList.contains { $0 == color.toHex }
     }
 }
 
-struct RoutineFormView_Previews: PreviewProvider {
-    static var previews: some View {
-        @State var isRoutineFormOpened = false
-        RoutineFormView(isRoutineFormOpened: $isRoutineFormOpened)
+struct RoutineFormViewPreview: View {
+    @State var isRoutineFormOpened = false
+    var isEdit: Bool = false
+    @Query var routines: [Routine]
+    @State var editRoutine: Routine?
+
+    var body: some View {
+        RoutineFormView(isRoutineFormOpened: $isRoutineFormOpened, routine: $editRoutine)
             .environment(AppState())
+            .onAppear {
+                if isEdit {
+                    editRoutine = routines[0]
+                }
+            }
+    }
+}
+
+struct RoutineContainer: View {
+    var isEdit: Bool = false
+
+    var body: some View {
+        RoutineFormViewPreview(isEdit: isEdit)
             .modelContainer(for: Routine.self)
     }
+}
+
+#Preview("New") {
+    RoutineContainer()
+}
+
+#Preview("Edit") {
+    RoutineContainer(isEdit: true)
 }
