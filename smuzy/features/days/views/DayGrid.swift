@@ -15,6 +15,9 @@ struct DayGridView: View {
     @State private var animationAmount = 1.0
     @Query private var routines: [Routine]
 
+    @State private var currentBlockId = Date.now.blockId
+    private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
     var body: some View {
         let blockWidth = Double((UIScreen.screenWidth - textColumnWidth) / Double(numColumns)) - paddings
 
@@ -32,15 +35,18 @@ struct DayGridView: View {
                     ForEach(0 ..< numRows, id: \.self) { row in
                         GridRow {
                             ForEach(0 ..< numColumns, id: \.self) { column in
-                                let (_, blockColor) = appState.getBlock(routines: routines, row: row, column: column)
+                                let (blockId, blockColor) = appState.getBlock(routines: routines, row: row, column: column)
 
                                 let edges = getEdges(row: row,
                                                      column: column)
 
+                                let isFuture = blockId > currentBlockId && blockColor != nil
+
                                 DayBlockView(
                                     edges: edges,
                                     blockColor: blockColor,
-                                    blockWidth: blockWidth
+                                    blockWidth: blockWidth,
+                                    isFuture: isFuture
                                 )
                             }
                         }
@@ -54,7 +60,8 @@ struct DayGridView: View {
 
                 CurrentBlock(
                     routines: routines,
-                    blockWidth: blockWidth
+                    blockWidth: blockWidth,
+                    currentBlockId: $currentBlockId
                 )
 
                 Grid(horizontalSpacing: 0, verticalSpacing: 0,
@@ -88,6 +95,14 @@ struct DayGridView: View {
                         appState.selectedDate = calendar.date(byAdding: .day, value: -1, to: selectedDate)!
                     }
                 })
+            .onReceive(timer) { input in
+                let newCurrentBlockId = input.blockId
+                if currentBlockId != newCurrentBlockId {
+                    withAnimation {
+                        currentBlockId = newCurrentBlockId
+                    }
+                }
+            }
         }
     }
 
