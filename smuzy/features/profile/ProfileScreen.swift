@@ -13,23 +13,24 @@ struct ProfileScreen: View {
 
         NavigationView {
             List {
-                Button(action: {
-                    print("Backup to File")
-                }) {
-                    Text("Backup to File")
-                }
+                Section {
+                    Button(action: {
+                        print("Backup to File")
+                    }) {
+                        Text("Backup to File")
+                    }
 
-                Button(action: {
-                    print("Restore from Backup")
-                }) {
-                    Text("Restore from Backup")
+                    Button(action: {
+                        print("Restore from Backup")
+                    }) {
+                        Text("Restore from Backup")
+                    }
                 }
 
                 Text("App version " + (appVersion ?? ""))
                     .frame(
                         maxWidth: .infinity, alignment: .center)
                     .foregroundColor(.gray.opacity(0.5))
-                    .padding(.vertical, 20)
                     .listRowBackground(Color.clear)
             }
             .navigationBarTitle("Settings")
