@@ -1,3 +1,4 @@
+import SwiftData
 import SwiftUI
 
 @main
@@ -20,11 +21,12 @@ struct smuzyApp: App {
 struct SplashCoordinator: View {
     @State private var isActive = false
     @State var appState = AppState()
+
     var body: some View {
         if isActive {
             AppView()
                 .environment(appState)
-                .modelContainer(for: [Routine.self, Block.self])
+                .modelContainer(for: Routine.self)
         } else {
             SplashScreen(isActive: $isActive)
         }

@@ -2,8 +2,8 @@ import CoreHaptics
 import SwiftUI
 
 struct CircleColorButton: View {
-    var color: Color
-    var onTap: (_ color: Color) -> Void
+    var color: UInt
+    var onTap: (_ color: UInt) -> Void
     var isActive: Bool
     var isUsed: Bool
 
@@ -16,7 +16,7 @@ struct CircleColorButton: View {
             Circle()
                 .stroke(colorScheme == .dark ? .white :
                     .black, lineWidth: isActive ? 2 : 0)
-                .fill(color)
+                .fill(Color(hex: color))
                 .frame(width: 60, height: 60)
                 .scaleEffect(isPressed ? 0.9 : 1.0)
                 .opacity(isUsed ? 0.4 : 1)

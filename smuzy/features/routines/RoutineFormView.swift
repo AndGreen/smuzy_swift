@@ -9,12 +9,12 @@ struct RoutineFormView: View {
     @Environment(\.modelContext) private var modelContext
     @Query var routines: [Routine]
     @State private var title: String = ""
-    @State private var activeColor: Color?
+    @State private var activeColor: UInt?
     @Binding var isRoutineFormOpened: Bool
     @Binding var routine: Routine?
     @FocusState private var focusedField: FocusedField?
 
-    var colorList: [Color] {
+    var colorList: [UInt] {
         let colorOrder: [String] = [
             "red", "pink", "purple", "deepPurple", "indigo",
             "blue", "cyan", "teal", "green", "lightGreen",
@@ -42,15 +42,18 @@ struct RoutineFormView: View {
                                        horizontalSpacing: 15, verticalSpacing: 20)
                         {
                             ForEach(colorList.indices, id: \.self) { colorName in
+                                let routineColor = colorList[colorName]
                                 let isActive =
-                                    activeColor == colorList[colorName]
+                                    activeColor == routineColor
 
                                 CircleColorButton(
-                                    color: colorList[colorName],
+                                    color: routineColor,
                                     onTap: { color in
                                         activeColor = isActive ? nil : color
                                     },
-                                    isActive: isActive, isUsed: isUsed(color: colorList[colorName]))
+                                    isActive:
+                                    activeColor == routineColor,
+                                    isUsed: isUsed(color: routineColor))
                             }
                         }.padding(.vertical)
                         Spacer()
@@ -59,7 +62,7 @@ struct RoutineFormView: View {
                 .onAppear {
                     focusedField = .title
                     if routine != nil {
-                        activeColor = Color.fromHex(routine!.color)
+                        activeColor = routine!.color
                         title = routine!.title
                     }
                 }
@@ -68,11 +71,11 @@ struct RoutineFormView: View {
                 .navigationBarItems(trailing:
                     Button("Save") {
                         if routine == nil {
-                            let newRoutines = Routine(color: activeColor!.toHex, title: title)
+                            let newRoutines = Routine(color: activeColor!, title: title)
 
                             modelContext.insert(newRoutines)
                         } else {
-                            routine!.color = activeColor!.toHex
+                            routine!.color = activeColor!
                             routine!.title = title
                         }
                         isRoutineFormOpened = false
@@ -83,7 +86,7 @@ struct RoutineFormView: View {
         }
     }
 
-    func isUsed(color: Color) -> Bool {
+    func isUsed(color: UInt) -> Bool {
         let colorList =
             routines
                 .map { routine in
@@ -91,7 +94,7 @@ struct RoutineFormView: View {
                 }
                 .filter { $0 != routine?.color }
 
-        return colorList.contains { $0 == color.toHex }
+        return colorList.contains { $0 == color }
     }
 }
 

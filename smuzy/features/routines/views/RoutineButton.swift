@@ -11,7 +11,7 @@ struct RoutineButtonView: View {
         Button(action: action) {
             HStack {
                 Circle()
-                    .fill(Color.fromHex(routine.color))
+                    .fill(Color(hex: routine.color))
                     .frame(width: 18, height: 18)
                     .overlay(
                         Circle()
@@ -44,7 +44,7 @@ struct RoutineButtonView: View {
 }
 
 #Preview {
-    RoutineButtonView(routine: Routine(color: Color.blue.toHex, title: "Morning Routine"), isActive: false, action: {}, onEdit: {}, onDelete: {})
+    RoutineButtonView(routine: Routine(color: Color.blue.hex, title: "Morning Routine"), isActive: false, action: {}, onEdit: {}, onDelete: {})
         .modelContainer(for: Routine.self)
         .previewLayout(.sizeThatFits)
         .padding()
