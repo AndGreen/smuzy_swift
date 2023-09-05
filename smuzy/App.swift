@@ -23,11 +23,19 @@ struct AppView: View {
                     Label("Settings", systemImage: "gearshape.fill")
                 }
         }
+        .onChange(of: appState.selectedDate) { _, _ in
+            loadDayGrid()
+        }
         .onAppear {
             if routines.isEmpty {
                 defaultRoutines.forEach { modelContext.insert($0) }
             }
+            loadDayGrid()
         }
+    }
+
+    func loadDayGrid() {
+        appState.dayGrid = Block.loadDayGrid(date: appState.selectedDate, modelContext: modelContext)
     }
 }
 

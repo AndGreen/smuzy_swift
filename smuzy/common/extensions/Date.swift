@@ -53,10 +53,10 @@ extension Date {
         return id
     }
     
-    func getDayBlockRange() -> ClosedRange<Int> {
+    func getDayBlockRange() -> (BlockId, BlockId) {
         let calendar = Calendar.current
         let startOfDay = calendar.startOfDay(for: self)
         let firstDayBlockID = startOfDay.getBlockId()
-        return firstDayBlockID ... (firstDayBlockID + numRows * numColumns)
+        return (firstDayBlockID, firstDayBlockID + numRows * numColumns)
     }
 }

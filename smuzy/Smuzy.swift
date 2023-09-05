@@ -26,7 +26,7 @@ struct SplashCoordinator: View {
         if isActive {
             AppView()
                 .environment(appState)
-                .modelContainer(for: Routine.self)
+                .modelContainer(for: [Routine.self, Block.self])
         } else {
             SplashScreen(isActive: $isActive)
         }

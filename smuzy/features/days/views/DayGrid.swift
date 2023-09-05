@@ -11,6 +11,7 @@ let paddings: Double = 4
 struct DayGridView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(AppState.self) var appState
+    @Environment(\.modelContext) var modelContext
     @State var feedbackGenerator: UIImpactFeedbackGenerator? = nil
     @State private var animationAmount = 1.0
     @Query private var routines: [Routine]
@@ -128,7 +129,21 @@ struct DayGridView: View {
     }
 
     func toggleSelection(blockId: BlockId) {
-        appState.dayGrid[blockId] = appState.selectedRoutine?.id ?? nil
+        let newBlockRoutineId = appState.selectedRoutine?.id ?? nil
+        let existBlock = Block.loadBlock(blockId: blockId, modelContext: modelContext)
+        if existBlock != nil {
+            if newBlockRoutineId != nil {
+                existBlock?.routineId = newBlockRoutineId!
+            } else {
+                modelContext.delete(existBlock!)
+            }
+        }
+        if existBlock == nil && newBlockRoutineId != nil {
+            modelContext.insert(Block(id: blockId, routineId: newBlockRoutineId!))
+        }
+
+        appState.dayGrid[blockId] = newBlockRoutineId
+
         feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
         feedbackGenerator?.prepare()
     }
