@@ -6,6 +6,7 @@ struct SplashScreen: View {
     @State private var opacity: Double = 0
     @State private var scale = 0.7
     @State private var yOffset: CGFloat = 50
+    @Environment(\.colorScheme) var colorScheme
 
     @Binding var isActive: Bool
     var body: some View {
@@ -14,11 +15,12 @@ struct SplashScreen: View {
             VStack {
                 Text("Smuzy")
                     .font(.system(size: 60, weight: .black))
-                    .foregroundStyle(Color(hex: 0xFF083B0C))
+                    .foregroundStyle(colorScheme == .light ?
+                        Color(hex: 0xFF083B0C) : Color(hex: 0xFF7DB01E))
             }.scaleEffect(scale)
                 .opacity(opacity)
                 .onAppear {
-                    withAnimation(.easeIn(duration: animationDuration)) {
+                    withAnimation(.spring(duration: animationDuration)) {
                         self.scale = 1
                         self.opacity = 1
                     }
@@ -30,7 +32,7 @@ struct SplashScreen: View {
                 .opacity(opacity)
                 .offset(y: yOffset)
                 .onAppear {
-                    withAnimation(.easeIn(duration: animationDuration)) {
+                    withAnimation(.spring(duration: animationDuration)) {
                         self.yOffset = 0
                         self.opacity = 1
                     }

@@ -4,7 +4,7 @@ import SwiftUI
 struct RoutinesListView: View {
     @Environment(AppState.self) var appState
     @Environment(\.modelContext) private var modelContext
-    @Query(animation: .bouncy) var routines: [Routine]
+    @Query(animation: .bouncy(extraBounce: 0.1)) var routines: [Routine]
     @State var editRoutine: Routine?
     @State private var isRoutineFormOpened = false
 
