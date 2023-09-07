@@ -4,7 +4,7 @@ import SwiftUI
 struct RoutinesListView: View {
     @Environment(AppState.self) var appState
     @Environment(\.modelContext) private var modelContext
-    @Query var routines: [Routine]
+    @Query(animation: .bouncy) var routines: [Routine]
     @State var editRoutine: Routine?
     @State private var isRoutineFormOpened = false
 
@@ -19,9 +19,8 @@ struct RoutinesListView: View {
                         editRoutine = routine
                         isRoutineFormOpened = true
                     }, onDelete: {
-                        withAnimation {
-                            modelContext.delete(routine)
-                        }
+                        modelContext.delete(routine)
+
                     })
                 }
                 AddRoutineButton {

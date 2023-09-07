@@ -4,7 +4,7 @@ import SwiftUI
 
 let timeInterval: TimeInterval = 3 * 60 * 60
 let borderColorLight = Color.black.opacity(0.3)
-let borderColorDark = Color.black.opacity(1)
+let borderColorDark = Color.black
 let textColumnWidth: Double = 50
 let paddings: Double = 4
 
