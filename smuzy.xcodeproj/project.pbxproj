@@ -15,7 +15,6 @@
 		584A6A692A878BA7005FE04F /* Smuzy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584A6A682A878BA7005FE04F /* Smuzy.swift */; };
 		584A6A6B2A878BA7005FE04F /* DayScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584A6A6A2A878BA7005FE04F /* DayScreen.swift */; };
 		584A6A6D2A878BA8005FE04F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 584A6A6C2A878BA8005FE04F /* Assets.xcassets */; };
-		584A6A702A878BA8005FE04F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 584A6A6F2A878BA8005FE04F /* Preview Assets.xcassets */; };
 		584A6A7B2A87949A005FE04F /* ProfileScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584A6A7A2A87949A005FE04F /* ProfileScreen.swift */; };
 		584A6A7D2A8797EC005FE04F /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584A6A7C2A8797EC005FE04F /* App.swift */; };
 		585498DE2AA3CA940075CC53 /* BlockModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 585498DD2AA3CA940075CC53 /* BlockModel.swift */; };
@@ -39,7 +38,7 @@
 
 /* Begin PBXFileReference section */
 		581DA8F42AA4A25700CB7939 /* CurrentBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentBlock.swift; sourceTree = "<group>"; };
-		581DA8FB2AA5F0F800CB7939 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		581DA8FB2AA5F0F800CB7939 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		581DA8FC2AA5F31D00CB7939 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
 		5837989D2A8B8318007C8A3F /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		5837989F2A8B8323007C8A3F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -47,7 +46,6 @@
 		584A6A682A878BA7005FE04F /* Smuzy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Smuzy.swift; sourceTree = "<group>"; };
 		584A6A6A2A878BA7005FE04F /* DayScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayScreen.swift; sourceTree = "<group>"; };
 		584A6A6C2A878BA8005FE04F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		584A6A6F2A878BA8005FE04F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		584A6A7A2A87949A005FE04F /* ProfileScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileScreen.swift; sourceTree = "<group>"; };
 		584A6A7C2A8797EC005FE04F /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		585498DD2AA3CA940075CC53 /* BlockModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockModel.swift; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 		584A6A672A878BA7005FE04F /* smuzy */ = {
 			isa = PBXGroup;
 			children = (
-				581DA8FB2AA5F0F800CB7939 /* Info.plist */,
 				584A6A762A878EA9005FE04F /* common */,
 				584A6A772A878EAE005FE04F /* features */,
 				584A6A7C2A8797EC005FE04F /* App.swift */,
@@ -119,17 +116,9 @@
 				584A6A682A878BA7005FE04F /* Smuzy.swift */,
 				581DA8FC2AA5F31D00CB7939 /* Splash.swift */,
 				584A6A6C2A878BA8005FE04F /* Assets.xcassets */,
-				584A6A6E2A878BA8005FE04F /* Preview Content */,
+				581DA8FB2AA5F0F800CB7939 /* Info.plist */,
 			);
 			path = smuzy;
-			sourceTree = "<group>";
-		};
-		584A6A6E2A878BA8005FE04F /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				584A6A6F2A878BA8005FE04F /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		584A6A762A878EA9005FE04F /* common */ = {
@@ -293,7 +282,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				584A6A702A878BA8005FE04F /* Preview Assets.xcassets in Resources */,
 				584A6A6D2A878BA8005FE04F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,8 +444,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"smuzy/Preview Content\"";
-				DEVELOPMENT_TEAM = WCX2SAAF8L;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 942XU7M2X8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = smuzy/Info.plist;
@@ -473,7 +461,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = azelenin.com.smuzy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.azelenin.smuzy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -488,8 +476,8 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"smuzy/Preview Content\"";
-				DEVELOPMENT_TEAM = WCX2SAAF8L;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = 942XU7M2X8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = smuzy/Info.plist;
@@ -505,7 +493,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 0.0.1;
-				PRODUCT_BUNDLE_IDENTIFIER = azelenin.com.smuzy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.azelenin.smuzy;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -12,7 +12,6 @@ struct DayGridView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(AppState.self) var appState
     @Environment(\.modelContext) var modelContext
-    @State var feedbackGenerator: UIImpactFeedbackGenerator? = nil
     @State private var animationAmount = 1.0
     @Query private var routines: [Routine]
 
@@ -143,9 +142,6 @@ struct DayGridView: View {
         }
 
         appState.dayGrid[blockId] = newBlockRoutineId
-
-        feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
-        feedbackGenerator?.prepare()
     }
 }
 

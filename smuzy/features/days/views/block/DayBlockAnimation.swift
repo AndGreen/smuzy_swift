@@ -20,6 +20,7 @@ struct DayBlockAnimation: View {
             Rectangle()
                 .fill(.white.opacity(0.001))
                 .frame(width: blockWidth, height: blockWidth)
+                .sensoryFeedback(.impact(weight: .light), trigger: show)
                 .onTapGesture {
                     onTap()
                     show.toggle()
@@ -31,7 +32,6 @@ struct DayBlockAnimation: View {
                     .frame(width: blockWidth, height: blockWidth)
                     .shadow(radius: shouldAnimate ? 5 : 0)
                     .scaleEffect(shouldAnimate ? scalingFactor : 1)
-
                     .onAppear {
                         let animation = Animation.easeInOut(duration: 0.1)
                         withAnimation(animation) {

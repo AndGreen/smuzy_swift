@@ -20,6 +20,7 @@ struct CircleColorButton: View {
                 .frame(width: 60, height: 60)
                 .scaleEffect(isPressed ? 0.9 : 1.0)
                 .opacity(isUsed ? 0.4 : 1)
+                .sensoryFeedback(.impact(weight: .light), trigger: isPressed)
                 .pressEvents {
                     if !(isUsed || isActive) {
                         withAnimation(.easeInOut(duration: 0.1)) {
@@ -31,8 +32,6 @@ struct CircleColorButton: View {
                         withAnimation(.spring) {
                             isPressed = false
                             onTap(color)
-                            feedbackGenerator = UIImpactFeedbackGenerator(style: .light)
-                            feedbackGenerator?.prepare()
                         }
                     }
                 }
