@@ -38,6 +38,7 @@ struct SplashScreen: View {
                     }
                 }
         }
+        .background(Color("Background"))
         .ignoresSafeArea()
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {

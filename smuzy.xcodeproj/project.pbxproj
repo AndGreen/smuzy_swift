@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5800E1212AACA0FE00437C8A /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5800E1202AACA0FE00437C8A /* StatsView.swift */; };
 		581DA8F52AA4A25700CB7939 /* CurrentBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581DA8F42AA4A25700CB7939 /* CurrentBlock.swift */; };
 		581DA8F82AA5EEC400CB7939 /* Stripes in Frameworks */ = {isa = PBXBuildFile; productRef = 581DA8F72AA5EEC400CB7939 /* Stripes */; };
 		581DA8FD2AA5F31D00CB7939 /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581DA8FC2AA5F31D00CB7939 /* Splash.swift */; };
@@ -37,8 +38,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5800E1202AACA0FE00437C8A /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		581DA8F42AA4A25700CB7939 /* CurrentBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentBlock.swift; sourceTree = "<group>"; };
-		581DA8FB2AA5F0F800CB7939 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		581DA8FC2AA5F31D00CB7939 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
 		5837989D2A8B8318007C8A3F /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		5837989F2A8B8323007C8A3F /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -79,6 +80,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5800E11F2AACA0EF00437C8A /* stats */ = {
+			isa = PBXGroup;
+			children = (
+				5800E1202AACA0FE00437C8A /* StatsView.swift */,
+			);
+			path = stats;
+			sourceTree = "<group>";
+		};
 		5837989C2A8B830E007C8A3F /* extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,7 +125,6 @@
 				584A6A682A878BA7005FE04F /* Smuzy.swift */,
 				581DA8FC2AA5F31D00CB7939 /* Splash.swift */,
 				584A6A6C2A878BA8005FE04F /* Assets.xcassets */,
-				581DA8FB2AA5F0F800CB7939 /* Info.plist */,
 			);
 			path = smuzy;
 			sourceTree = "<group>";
@@ -135,6 +143,7 @@
 		584A6A772A878EAE005FE04F /* features */ = {
 			isa = PBXGroup;
 			children = (
+				5800E11F2AACA0EF00437C8A /* stats */,
 				58999CCB2A87AA23004B4B17 /* routines */,
 				584A6A792A87947F005FE04F /* profile */,
 				584A6A782A878F53005FE04F /* days */,
@@ -309,6 +318,7 @@
 				585734C12A92C4FD00FB11A9 /* RoutineButton.swift in Sources */,
 				584A6A7D2A8797EC005FE04F /* App.swift in Sources */,
 				583798A02A8B8323007C8A3F /* Color.swift in Sources */,
+				5800E1212AACA0FE00437C8A /* StatsView.swift in Sources */,
 				585498DE2AA3CA940075CC53 /* BlockModel.swift in Sources */,
 				584A6A6B2A878BA7005FE04F /* DayScreen.swift in Sources */,
 				585734BA2A91308900FB11A9 /* DayBlock.swift in Sources */,

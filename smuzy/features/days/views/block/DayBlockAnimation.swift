@@ -20,7 +20,7 @@ struct DayBlockAnimation: View {
             Rectangle()
                 .fill(.white.opacity(0.001))
                 .frame(width: blockWidth, height: blockWidth)
-                .sensoryFeedback(.impact(weight: .light), trigger: show)
+                .sensoryFeedback(.impact(weight: .light, intensity: 0.5), trigger: show)
                 .onTapGesture {
                     onTap()
                     show.toggle()

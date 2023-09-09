@@ -13,12 +13,12 @@ struct AppView: View {
                     Label("Home", systemImage: "calendar")
                 }
 
-            Text("Coming soon 🏗️")
+            StatsScreen()
                 .tabItem {
                     Label("Stats", systemImage: "chart.bar.xaxis")
                 }
 
-            ProfileScreen()
+            SettingsScreen()
                 .tabItem {
                     Label("Settings", systemImage: "gearshape.fill")
                 }

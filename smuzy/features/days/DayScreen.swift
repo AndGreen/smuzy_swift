@@ -27,6 +27,7 @@ struct DayScreen: View {
                 RoutinesListView()
                 Spacer()
             }
+            .background(Color("Background"))
             .navigationBarTitleDisplayMode(.inline)
             .dayViewToolbar(isCalendarOpen: $isCalendarOpen,
                             selectedDate: $selectedDate)

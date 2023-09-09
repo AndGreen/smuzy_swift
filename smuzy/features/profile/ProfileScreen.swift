@@ -1,13 +1,6 @@
-//
-//  settings_view.swift
-//  smuzy
-//
-//  Created by Andrey Zelenin on 12.08.2023.
-//
-
 import SwiftUI
 
-struct ProfileScreen: View {
+struct SettingsScreen: View {
     var body: some View {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
 
@@ -30,9 +23,11 @@ struct ProfileScreen: View {
                 Text("App version " + (appVersion ?? ""))
                     .frame(
                         maxWidth: .infinity, alignment: .center)
-                    .foregroundColor(.gray.opacity(0.5))
+                    .foregroundColor(.gray.opacity(0.3))
                     .listRowBackground(Color.clear)
             }
+            .background(Color("Background"))
+            .scrollContentBackground(.hidden)
             .navigationBarTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
         }
@@ -40,5 +35,5 @@ struct ProfileScreen: View {
 }
 
 #Preview {
-    ProfileScreen()
+    SettingsScreen()
 }

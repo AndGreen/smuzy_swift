@@ -45,7 +45,7 @@ struct CircleColorButton: View {
             if isUsed {
                 Image(systemName: "xmark")
                     .foregroundColor(.white)
-                    .font(.system(size: 25))
+                    .font(.system(size: 22))
                     .opacity(colorScheme == .dark ? 0.2 : 1)
             }
         }
