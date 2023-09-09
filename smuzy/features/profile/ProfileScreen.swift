@@ -1,5 +1,15 @@
 import SwiftUI
 
+extension Bundle {
+    var releaseVersionNumber: String {
+        return (infoDictionary?["CFBundleShortVersionString"] ?? "") as! String
+    }
+
+    var buildVersionNumber: String {
+        return (infoDictionary?["CFBundleVersion"] ?? "") as! String
+    }
+}
+
 struct SettingsScreen: View {
     var body: some View {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
@@ -20,7 +30,7 @@ struct SettingsScreen: View {
                     }
                 }
 
-                Text("App version " + (appVersion ?? ""))
+                Text("App version \(Bundle.main.releaseVersionNumber) (\(Bundle.main.buildVersionNumber))")
                     .frame(
                         maxWidth: .infinity, alignment: .center)
                     .foregroundColor(.gray.opacity(0.3))
