@@ -12,8 +12,6 @@ extension Bundle {
 
 struct SettingsScreen: View {
     var body: some View {
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
-
         NavigationView {
             List {
                 Section {

@@ -1,3 +1,4 @@
+import SwiftData
 import SwiftUI
 
 struct RoutineButtonView: View {
@@ -43,8 +44,15 @@ struct RoutineButtonView: View {
     }
 }
 
+struct RoutineButtonPreview: View {
+    @Query var routines: [Routine]
+    var body: some View {
+        RoutineButtonView(routine: routines[0], isActive: false, action: {}, onEdit: {}, onDelete: {})
+    }
+}
+
 #Preview {
-    RoutineButtonView(routine: Routine(color: Color.blue.hex, title: "Morning Routine"), isActive: false, action: {}, onEdit: {}, onDelete: {})
+    RoutineButtonPreview()
         .modelContainer(for: Routine.self)
         .previewLayout(.sizeThatFits)
         .padding()

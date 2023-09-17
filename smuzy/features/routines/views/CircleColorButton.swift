@@ -12,12 +12,13 @@ struct CircleColorButton: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
+        var routineWidth = UIScreen.screenWidth / 6
         ZStack {
             Circle()
                 .stroke(colorScheme == .dark ? .white :
                     .black, lineWidth: isActive ? 2 : 0)
                 .fill(Color(hex: color))
-                .frame(width: 60, height: 60)
+                .frame(width: routineWidth, height: routineWidth)
                 .scaleEffect(isPressed ? 0.9 : 1.0)
                 .opacity(isUsed ? 0.4 : 1)
                 .sensoryFeedback(.impact(weight: .light), trigger: isPressed)
