@@ -32,8 +32,10 @@ struct DayScreen: View {
                                 .frame(width: 12, height: 7)
                                 .offset(x: 0, y: 1)
                         }
+
                         .padding(.horizontal, 30)
-                        .padding(.vertical, 10)
+                        .padding(.top, 15)
+                        .padding(.bottom, 10)
                     }
 
                 DayGridView()

@@ -59,7 +59,7 @@ struct RoutineFormView: View {
                                     isUsed: isUsed(color: routineColor))
                             }
                         }
-                        .padding(.top, 1)
+                        .padding(.vertical, 1)
                         Spacer()
                     }
                     .listRowInsets(EdgeInsets())
