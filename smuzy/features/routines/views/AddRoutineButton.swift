@@ -10,7 +10,7 @@ struct AddRoutineButton: View {
                     .font(.system(size: 24))
                     .foregroundColor(.blue)
 
-                Text("Add")
+                Text("Add").foregroundColor(.white)
             }
             .padding(.vertical, 8)
             .padding(.horizontal, 12)

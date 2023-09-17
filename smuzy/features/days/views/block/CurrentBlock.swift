@@ -23,8 +23,8 @@ struct CurrentBlock: View {
                 .frame(width: blockWidth, height: blockWidth)
                 .background(
                     Rectangle()
-                        .fill((blockColor ?? bgColor).shadow(.drop(color: .black.opacity(0.5), radius: 3, x: 0, y: 0)))
-                        .stroke(.blue, lineWidth: 2)
+                        .fill((blockColor ?? bgColor).shadow(.drop(color: .black.opacity(0.8), radius: 3, x: 0, y: 0)))
+                        .stroke(.blue, lineWidth: 3)
                 )
                 .offset(x: blockWidth * CGFloat(column), y: blockWidth * CGFloat(row))
         }

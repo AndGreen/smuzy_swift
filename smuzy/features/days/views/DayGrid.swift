@@ -6,7 +6,7 @@ let timeInterval: TimeInterval = 3 * 60 * 60
 let borderColorLight = Color.black.opacity(0.3)
 let borderColorDark = Color.black
 let textColumnWidth: Double = 50
-let paddings: Double = 4
+let paddings: Double = 2
 
 struct DayGridView: View {
     @Environment(\.colorScheme) var colorScheme
@@ -25,7 +25,7 @@ struct DayGridView: View {
             Grid(horizontalSpacing: 0, verticalSpacing: 0) {
                 ForEach(0 ..< numRows, id: \.self) { row in
                     Text("\(timeText(for: row))")
-                        .foregroundColor(.gray.opacity(0.4))
+                        .foregroundColor(colorScheme == .dark ? .white.opacity(0.2) : borderColorLight)
                         .font(.system(size: 15))
                         .frame(width: 42, height: blockWidth)
                 }
@@ -51,12 +51,12 @@ struct DayGridView: View {
                             }
                         }
                     }
-                }
-                .cornerRadius(20)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 20)
-                        .stroke(colorScheme == .dark ? borderColorDark : borderColorLight, lineWidth: 1)
-                )
+                }.background(colorScheme == .dark ? bgDark : .clear)
+                    .cornerRadius(20)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 20)
+                            .stroke(colorScheme == .dark ? borderColorDark : borderColorLight, lineWidth: 1)
+                    )
 
                 CurrentBlock(
                     routines: routines,

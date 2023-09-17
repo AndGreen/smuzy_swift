@@ -20,17 +20,29 @@ struct DayScreen: View {
     var body: some View {
         NavigationView {
             VStack {
+                Button(
+                    action: {
+                        isCalendarOpen.toggle()
+                    }) {
+                        HStack {
+                            Text(selectedDate.getFormattedDayLabel())
+                                .foregroundColor(colorScheme == .dark ? .white : .black)
+                            Image(systemName: $isCalendarOpen.wrappedValue ? "chevron.up" : "chevron.down")
+                                .resizable()
+                                .frame(width: 12, height: 7)
+                                .offset(x: 0, y: 1)
+                        }
+                        .padding(.horizontal, 30)
+                        .padding(.vertical, 10)
+                    }
+
                 DayGridView()
-                    .padding()
-                    .background(colorScheme == .dark ? bgDark : bgLight)
-                    .clipped()
+                    .padding(.bottom, 10)
                 RoutinesListView()
                 Spacer()
             }
             .background(Color("Background"))
             .navigationBarTitleDisplayMode(.inline)
-            .dayViewToolbar(isCalendarOpen: $isCalendarOpen,
-                            selectedDate: $selectedDate)
             .onChange(of: appState.selectedDate) {
                 withAnimation {
                     if selectedDate != appState.selectedDate {
@@ -50,30 +62,6 @@ struct DayScreen: View {
         }
         .toast(isPresenting: $isToastOpen) {
             AlertToast(displayMode: .hud, type: .complete(.green), title: "Cleared")
-        }
-    }
-}
-
-extension View {
-    func dayViewToolbar(
-        isCalendarOpen: Binding<Bool>,
-        selectedDate: Binding<Date>
-    ) -> some View {
-        toolbar {
-            ToolbarItem(placement: .principal) {
-                Button(
-                    action: {
-                        isCalendarOpen.wrappedValue.toggle()
-                    }) {
-                        HStack {
-                            Text(selectedDate.wrappedValue.getFormattedDayLabel())
-                            Image(systemName: isCalendarOpen.wrappedValue ? "chevron.up" : "chevron.down")
-                                .resizable()
-                                .frame(width: 12, height: 7)
-                                .offset(x: 0, y: 1)
-                        }
-                    }
-            }
         }
     }
 }

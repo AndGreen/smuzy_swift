@@ -34,8 +34,11 @@ struct RoutineFormView: View {
         NavigationView {
             VStack {
                 Form {
-                    TextField("Title", text: $title)
-                        .focused($focusedField, equals: .title)
+                    Section {
+                        TextField("Title", text: $title)
+                            .focused($focusedField, equals: .title)
+                    }
+
                     HStack {
                         Spacer()
                         WrappingHStack(alignment: .center,
@@ -55,9 +58,12 @@ struct RoutineFormView: View {
                                     activeColor == routineColor,
                                     isUsed: isUsed(color: routineColor))
                             }
-                        }.padding(.vertical)
+                        }
+                        .padding(.top, 1)
                         Spacer()
                     }
+                    .listRowInsets(EdgeInsets())
+                    .listRowBackground(Color.clear)
                 }
                 .onAppear {
                     focusedField = .title
