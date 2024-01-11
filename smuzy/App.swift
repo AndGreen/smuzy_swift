@@ -15,7 +15,7 @@ struct AppView: View {
 
             StatsScreen()
                 .tabItem {
-                    Label("Stats", systemImage: "chart.bar.xaxis")
+                    Label("Progress", systemImage: "chart.pie.fill")
                 }
 
             SettingsScreen()
