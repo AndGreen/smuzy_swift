@@ -67,8 +67,10 @@ struct SettingsScreen: View {
     func restoreBackup(backup: Backup) throws {
         try modelContext.delete(model: Routine.self)
         try modelContext.delete(model: Block.self)
+        try modelContext.save()
         backup.routines.forEach { modelContext.insert($0) }
         backup.blocks.forEach { modelContext.insert($0) }
+        try modelContext.save()
         appState.loadDayGrid(modelContext: modelContext)
     }
     
