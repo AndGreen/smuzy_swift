@@ -42,12 +42,15 @@ struct SettingsScreen: View {
             .fileImporter(isPresented: $isImporting,
                             allowedContentTypes: [.json]) { res in
                 do {
+                    
                     let fileUrl = try res.get()
-                    let fileData = try Data(contentsOf: fileUrl)
-                    let backup = try JSONDecoder().decode(Backup.self, from: fileData)
-                    try restoreBackup(backup: backup)
-                    showToast(text: "The backup was successfully restored", type: .complete(.green))
-                } catch {
+                    if fileUrl.startAccessingSecurityScopedResource() {
+                        let fileData = try Data(contentsOf: fileUrl)
+                        let backup = try JSONDecoder().decode(Backup.self, from: fileData)
+                        try restoreBackup(backup: backup)
+                        showToast(text: "The backup was successfully restored", type: .complete(.green))
+                    }
+                } catch  {
                     showToast(text: "Error: Backup Failed", type: .error(.red))
                 }
              }
