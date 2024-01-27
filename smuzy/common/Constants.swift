@@ -34,3 +34,7 @@ let defaultRoutines = [
     Routine(color: defaultColors["gray"]!, title: "sport"),
     Routine(color: defaultColors["yellow"]!, title: "eat")
 ]
+
+struct Constants {
+    static let fileNameDateFormat = "dd_MM_yyyy"
+}

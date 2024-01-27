@@ -3,7 +3,6 @@ import SwiftData
 import SwiftUI
 
 struct DayScreen: View {
-    @State private var isToastOpen = false
     @State private var isCalendarOpen = false
     @State private var selectedDate = Date()
 
@@ -11,11 +10,13 @@ struct DayScreen: View {
     @Environment(\.colorScheme) var colorScheme
 
     @Query var routines: [Routine]
-    @Environment(\.modelContext) private var modelContext
 
     private var arrowIcon: String {
         return isCalendarOpen ? "chevron.up" : "chevron.down"
     }
+    
+    @State private var currentIndex = 0
+    @State private var showAlert = false
 
     var body: some View {
         NavigationView {
@@ -37,11 +38,23 @@ struct DayScreen: View {
                         .padding(.top, 15)
                         .padding(.bottom, 10)
                     }
-
                 DayGridView()
-                    .padding(.bottom, 10)
+                .padding(.bottom, 7)
+                .onChange(of: currentIndex) { oldState, newState  in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                        let calendar = Calendar.current
+                        let selectedDate = appState.selectedDate
+                        if currentIndex == 0 {
+                            appState.selectedDate = calendar.date(byAdding: .day, value: -1, to: selectedDate)!
+                        }
+                        if currentIndex == 2 {
+                            appState.selectedDate = calendar.date(byAdding: .day, value: 1, to: selectedDate)!
+                        }
+                        currentIndex = 1
+                    }
+                    
+                }
                 RoutinesListView()
-                Spacer()
             }
             .background(Color("Background"))
             .navigationBarTitleDisplayMode(.inline)
@@ -61,9 +74,6 @@ struct DayScreen: View {
                 .onChange(of: selectedDate) { _, _ in
                     isCalendarOpen = false
                 }
-        }
-        .toast(isPresenting: $isToastOpen) {
-            AlertToast(displayMode: .hud, type: .complete(.green), title: "Cleared")
         }
     }
 }

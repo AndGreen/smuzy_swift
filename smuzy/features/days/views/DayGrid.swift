@@ -12,9 +12,8 @@ struct DayGridView: View {
     @Environment(\.colorScheme) var colorScheme
     @Environment(AppState.self) var appState
     @Environment(\.modelContext) var modelContext
-    @State private var animationAmount = 1.0
     @Query private var routines: [Routine]
-
+    @State private var animationAmount = 1.0
     @State private var currentBlockId = Date.now.blockId
     private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 

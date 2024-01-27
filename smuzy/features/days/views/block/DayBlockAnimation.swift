@@ -31,6 +31,7 @@ struct DayBlockAnimation: View {
                     onTap()
                     show.toggle()
 
+                    // TODO: is it possible to do it without DispatchQueue?
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                         show.toggle()
                     }

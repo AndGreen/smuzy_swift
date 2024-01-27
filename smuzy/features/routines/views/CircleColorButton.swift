@@ -12,7 +12,7 @@ struct CircleColorButton: View {
     @Environment(\.colorScheme) var colorScheme
 
     var body: some View {
-        var routineWidth = UIScreen.screenWidth / 6
+        let routineWidth = UIScreen.screenWidth / 6
         ZStack {
             Circle()
                 .stroke(colorScheme == .dark ? .white :

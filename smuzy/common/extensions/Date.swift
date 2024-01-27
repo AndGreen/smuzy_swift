@@ -59,4 +59,12 @@ extension Date {
         let firstDayBlockID = startOfDay.getBlockId()
         return (firstDayBlockID, firstDayBlockID + numRows * numColumns)
     }
+    
+    func getBackupFileName() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = Constants.fileNameDateFormat
+        let formattedDate = dateFormatter.string(from: self)
+        return "smuzy_\(formattedDate).json"
+    }
+    
 }

@@ -13,7 +13,7 @@ struct AppView: View {
                     Label("Home", systemImage: "calendar")
                 }
 
-            StatsScreen()
+            ProgressView()
                 .tabItem {
                     Label("Progress", systemImage: "chart.pie.fill")
                 }

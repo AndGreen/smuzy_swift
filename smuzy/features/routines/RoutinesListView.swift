@@ -20,7 +20,6 @@ struct RoutinesListView: View {
                         isRoutineFormOpened = true
                     }, onDelete: {
                         modelContext.delete(routine)
-
                     })
                 }
                 AddRoutineButton {
@@ -35,7 +34,6 @@ struct RoutinesListView: View {
                     editRoutine = nil
                 }
             }
-            .padding(.top, 3)
             .padding(.horizontal, 10)
         }
     }

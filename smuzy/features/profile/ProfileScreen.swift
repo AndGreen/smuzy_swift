@@ -1,28 +1,45 @@
 import SwiftUI
+import SwiftData
+import AlertToast
 
-extension Bundle {
-    var releaseVersionNumber: String {
-        return (infoDictionary?["CFBundleShortVersionString"] ?? "") as! String
-    }
+struct Backup: Codable {
+    var routines: [Routine]
+    var blocks: [Block]
+}
 
-    var buildVersionNumber: String {
-        return (infoDictionary?["CFBundleVersion"] ?? "") as! String
+extension Backup: Transferable {
+    static var transferRepresentation: some TransferRepresentation {
+        CodableRepresentation(contentType: .json)
+            .suggestedFileName(Date().getBackupFileName())
     }
 }
 
 struct SettingsScreen: View {
+    @Query var routines: [Routine]
+    @Query var blocks: [Block]
+    @Environment(\.modelContext) private var modelContext
+    
+    @State private var isImporting = false
+    @State private var isExporting = false
+    
+    @State private var isToastShow = false
+    @State private var toastText = ""
+    @State private var toastType = AlertToast.AlertType.complete(.green)
+
     var body: some View {
         NavigationView {
             List {
                 Section {
-                    Button(action: {
-                        print("Backup to File")
-                    }) {
-                        Text("Backup to File")
+                    ShareLink(
+                        item: Backup(routines: routines, blocks: blocks),
+                        preview: SharePreview(Date().getBackupFileName(), image: Image(systemName: "book.pages")
+                        )
+                    ) {
+                        Text("Backup to file")
                     }
-
+                    
                     Button(action: {
-                        print("Restore from Backup")
+                        isImporting = true
                     }) {
                         Text("Restore from Backup")
                     }
@@ -34,14 +51,36 @@ struct SettingsScreen: View {
                     .foregroundColor(.gray.opacity(0.3))
                     .listRowBackground(Color.clear)
             }
+            .fileImporter(isPresented: $isImporting,
+                            allowedContentTypes: [.json]) { res in
+                do {
+                    let fileUrl = try res.get()
+                    let fileData = try Data(contentsOf: fileUrl)
+                    let backup = try JSONDecoder().decode(Backup.self, from: fileData)
+                    restoreBackup(backup: backup)
+                } catch{
+                    print ("error reading: \(error.localizedDescription)")
+                }
+                
+             }
             .background(Color("Background"))
             .scrollContentBackground(.hidden)
             .navigationBarTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
+            .listStyle(InsetGroupedListStyle())
         }
+        
     }
+
+    func restoreBackup(backup: Backup) {
+         backup.routines.forEach { modelContext.insert($0) }
+         backup.blocks.forEach { modelContext.insert($0) }
+    }
+    
 }
 
 #Preview {
     SettingsScreen()
+        .environment(AppState())
+        .modelContainer(for: [Routine.self, Block.self])
 }
