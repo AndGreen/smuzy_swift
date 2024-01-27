@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct AddRoutineButton: View {
+    @Environment(\.colorScheme) var colorScheme
     var action: () -> Void
 
     var body: some View {
@@ -10,7 +11,7 @@ struct AddRoutineButton: View {
                     .font(.system(size: 24))
                     .foregroundColor(.blue)
 
-                Text("Add").foregroundColor(.white)
+                Text("Add").foregroundColor(colorScheme == .dark ? .white : .black)
             }
             .padding(.vertical, 8)
             .padding(.horizontal, 12)

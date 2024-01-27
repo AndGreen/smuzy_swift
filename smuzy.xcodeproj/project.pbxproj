@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		5800E1212AACA0FE00437C8A /* ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5800E1202AACA0FE00437C8A /* ProgressView.swift */; };
 		58162DAC2B6522BD00753243 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58162DAB2B6522BD00753243 /* Text.swift */; };
+		58162DAE2B655C7200753243 /* Backup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58162DAD2B655C7200753243 /* Backup.swift */; };
 		581DA8F52AA4A25700CB7939 /* CurrentBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581DA8F42AA4A25700CB7939 /* CurrentBlock.swift */; };
 		581DA8F82AA5EEC400CB7939 /* Stripes in Frameworks */ = {isa = PBXBuildFile; productRef = 581DA8F72AA5EEC400CB7939 /* Stripes */; };
 		581DA8FD2AA5F31D00CB7939 /* Splash.swift in Sources */ = {isa = PBXBuildFile; fileRef = 581DA8FC2AA5F31D00CB7939 /* Splash.swift */; };
@@ -41,6 +42,7 @@
 /* Begin PBXFileReference section */
 		5800E1202AACA0FE00437C8A /* ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressView.swift; sourceTree = "<group>"; };
 		58162DAB2B6522BD00753243 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		58162DAD2B655C7200753243 /* Backup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Backup.swift; sourceTree = "<group>"; };
 		581DA8F42AA4A25700CB7939 /* CurrentBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentBlock.swift; sourceTree = "<group>"; };
 		581DA8FC2AA5F31D00CB7939 /* Splash.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splash.swift; sourceTree = "<group>"; };
 		5837989D2A8B8318007C8A3F /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				584A6A7A2A87949A005FE04F /* ProfileScreen.swift */,
+				58162DAD2B655C7200753243 /* Backup.swift */,
 			);
 			path = profile;
 			sourceTree = "<group>";
@@ -329,6 +332,7 @@
 				58999CC92A87A401004B4B17 /* DayGrid.swift in Sources */,
 				58999CCD2A87AA33004B4B17 /* RoutineModel.swift in Sources */,
 				58999CD62A87CD29004B4B17 /* WrappingHStack.swift in Sources */,
+				58162DAE2B655C7200753243 /* Backup.swift in Sources */,
 				584A6A692A878BA7005FE04F /* Smuzy.swift in Sources */,
 				584A6A7B2A87949A005FE04F /* ProfileScreen.swift in Sources */,
 			);

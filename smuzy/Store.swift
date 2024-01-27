@@ -1,4 +1,5 @@
 import SwiftUI
+import SwiftData
 
 typealias BlockId = Int
 typealias RoutineId = UUID
@@ -26,5 +27,9 @@ class AppState {
         let blockRoutineId = dayGrid[blockId]
         let blockColor = routines.colorMap[blockRoutineId ?? RoutineId()]
         return (blockId, blockColor)
+    }
+    
+    func loadDayGrid(modelContext: ModelContext) {
+        dayGrid = Block.loadDayGrid(date: selectedDate, modelContext: modelContext)
     }
 }

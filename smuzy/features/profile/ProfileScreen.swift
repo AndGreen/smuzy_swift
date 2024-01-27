@@ -2,22 +2,11 @@ import SwiftUI
 import SwiftData
 import AlertToast
 
-struct Backup: Codable {
-    var routines: [Routine]
-    var blocks: [Block]
-}
-
-extension Backup: Transferable {
-    static var transferRepresentation: some TransferRepresentation {
-        CodableRepresentation(contentType: .json)
-            .suggestedFileName(Date().getBackupFileName())
-    }
-}
-
 struct SettingsScreen: View {
     @Query var routines: [Routine]
     @Query var blocks: [Block]
     @Environment(\.modelContext) private var modelContext
+    @Environment(AppState.self) var appState
     
     @State private var isImporting = false
     @State private var isExporting = false
@@ -32,8 +21,7 @@ struct SettingsScreen: View {
                 Section {
                     ShareLink(
                         item: Backup(routines: routines, blocks: blocks),
-                        preview: SharePreview(Date().getBackupFileName(), image: Image(systemName: "book.pages")
-                        )
+                        preview: SharePreview(Date().getBackupFileName(), image: Image("Backup"))
                     ) {
                         Text("Backup to file")
                     }
@@ -57,7 +45,7 @@ struct SettingsScreen: View {
                     let fileUrl = try res.get()
                     let fileData = try Data(contentsOf: fileUrl)
                     let backup = try JSONDecoder().decode(Backup.self, from: fileData)
-                    restoreBackup(backup: backup)
+                    try restoreBackup(backup: backup)
                     showToast(text: "The backup was successfully restored", type: .complete(.green))
                 } catch {
                     showToast(text: "Error: Backup Failed", type: .error(.red))
@@ -73,9 +61,12 @@ struct SettingsScreen: View {
         }
     }
 
-    func restoreBackup(backup: Backup) {
-         backup.routines.forEach { modelContext.insert($0) }
-         backup.blocks.forEach { modelContext.insert($0) }
+    func restoreBackup(backup: Backup) throws {
+        try modelContext.delete(model: Routine.self)
+        try modelContext.delete(model: Block.self)
+        backup.routines.forEach { modelContext.insert($0) }
+        backup.blocks.forEach { modelContext.insert($0) }
+        appState.loadDayGrid(modelContext: modelContext)
     }
     
     func showToast(text: String, type: AlertToast.AlertType) {

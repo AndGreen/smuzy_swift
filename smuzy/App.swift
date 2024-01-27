@@ -13,10 +13,10 @@ struct AppView: View {
                     Label("Home", systemImage: "calendar")
                 }
 
-            ProgressView()
-                .tabItem {
-                    Label("Progress", systemImage: "chart.pie.fill")
-                }
+//            ProgressView()
+//                .tabItem {
+//                    Label("Progress", systemImage: "chart.pie.fill")
+//                }
 
             SettingsScreen()
                 .tabItem {
@@ -24,18 +24,14 @@ struct AppView: View {
                 }
         }
         .onChange(of: appState.selectedDate) { _, _ in
-            loadDayGrid()
+            appState.loadDayGrid(modelContext: modelContext)
         }
         .onAppear {
             if routines.isEmpty {
                 defaultRoutines.forEach { modelContext.insert($0) }
             }
-            loadDayGrid()
+            appState.loadDayGrid(modelContext: modelContext)
         }
-    }
-
-    func loadDayGrid() {
-        appState.dayGrid = Block.loadDayGrid(date: appState.selectedDate, modelContext: modelContext)
     }
 }
 
