@@ -22,7 +22,7 @@ struct SettingsScreen: View {
     @State private var isImporting = false
     @State private var isExporting = false
     
-    @State private var isToastShow = false
+    @State private var toastShow = false
     @State private var toastText = ""
     @State private var toastType = AlertToast.AlertType.complete(.green)
 
@@ -58,18 +58,19 @@ struct SettingsScreen: View {
                     let fileData = try Data(contentsOf: fileUrl)
                     let backup = try JSONDecoder().decode(Backup.self, from: fileData)
                     restoreBackup(backup: backup)
-                } catch{
-                    print ("error reading: \(error.localizedDescription)")
+                    showToast(text: "The backup was successfully restored", type: .complete(.green))
+                } catch {
+                    showToast(text: "Error: Backup Failed", type: .error(.red))
                 }
-                
              }
             .background(Color("Background"))
-            .scrollContentBackground(.hidden)
             .navigationBarTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
             .listStyle(InsetGroupedListStyle())
         }
-        
+        .toast(isPresenting: $toastShow) {
+            AlertToast(displayMode: .hud, type: toastType, title: toastText)
+        }
     }
 
     func restoreBackup(backup: Backup) {
@@ -77,6 +78,11 @@ struct SettingsScreen: View {
          backup.blocks.forEach { modelContext.insert($0) }
     }
     
+    func showToast(text: String, type: AlertToast.AlertType) {
+        toastType = type
+        toastText = text
+        toastShow = true
+    }
 }
 
 #Preview {
